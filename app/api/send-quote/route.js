@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-export async function POST(req: Request) {
+export async function POST(req) {
   try {
     const body = await req.json();
     const { name, email, phone, projectType, details } = body;
@@ -14,23 +14,20 @@ export async function POST(req: Request) {
       },
     });
 
-    const mailOptions = {
+    await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
       subject: `New Quote Request from ${name}`,
       text: `
 Name: ${name}
 Email: ${email}
-Phone: ${phone || "N/A"}
-
+Phone: ${phone}
 Project Type: ${projectType}
 
 Details:
 ${details}
       `,
-    };
-
-    await transporter.sendMail(mailOptions);
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
