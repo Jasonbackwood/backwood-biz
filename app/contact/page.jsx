@@ -26,8 +26,9 @@ export default function ContactPage() {
   return (
     <div className="text-white pt-28 pb-20 px-6 max-w-3xl mx-auto">
       <h1 className="text-4xl font-bold text-center mb-4">Contact Us</h1>
+
       <p className="text-center text-gray-300 mb-10">
-        Have a question? Reach out and we’ll get back to you as soon as possible.
+        Send a message — we'll get back to you as soon as possible.
       </p>
 
       {submitted ? (
@@ -73,10 +74,34 @@ export default function ContactPage() {
           />
 
           <button className="w-full bg-yellow-600 hover:bg-yellow-700 py-3 rounded font-semibold">
-            Send
+            Send Message
           </button>
         </form>
       )}
+
+      {/* BUSINESS ADDRESS */}
+      <div className="text-center mt-16">
+        <h2 className="text-2xl font-bold">Business Address</h2>
+        <p className="mt-2">Backwood Illuminated LLC</p>
+        <p>Woods Cross, Utah 84087</p>
+      </div>
+
+      {/* ABOUT US */}
+      <div className="text-center mt-10 text-gray-300 leading-relaxed">
+        <h2 className="text-2xl font-bold mb-3 text-white">A Bit About Us</h2>
+        <p>
+          Backwood Illuminated is a Utah-based engraving studio specializing in high-precision
+          Fiber, UV, and CO₂ laser marking. We combine modern tech with rugged Utah work ethic to
+          deliver clean detail, durability, and fast turnaround — every time.
+        </p>
+
+        <a
+          href="/"
+          className="inline-block mt-6 bg-yellow-600 hover:bg-yellow-700 px-6 py-3 rounded"
+        >
+          Back to Home
+        </a>
+      </div>
     </div>
   );
 }
