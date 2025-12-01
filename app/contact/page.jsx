@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export default function ContactPage() {
+export default function ProjectQuotePage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -46,15 +46,22 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-20">
       <div className="max-w-2xl mx-auto bg-zinc-900 p-10 rounded-xl border border-zinc-800">
-        <h1 className="text-4xl font-bold mb-6 text-center">Get a Custom Quote</h1>
+        
+        {/* HEADER */}
+        <h1 className="text-4xl font-bold mb-2 text-center">
+          Submit a Project / Request a Custom Quote
+        </h1>
+        <p className="text-center text-gray-400 mb-8">
+          Upload your artwork, describe your engraving project, and we’ll get back to you.
+        </p>
 
+        {/* SUCCESS MESSAGE */}
         {submitted ? (
           <div className="text-center space-y-6">
             <p className="text-green-400 text-xl">
-              Thank you! Your request has been sent.
+              Thank you! Your project request has been submitted.
             </p>
 
-            {/* BACK TO HOME BUTTON */}
             <Link
               href="/"
               className="inline-block px-6 py-3 bg-amber-500 text-black font-bold rounded-md hover:bg-amber-400 transition"
@@ -63,6 +70,7 @@ export default function ContactPage() {
             </Link>
           </div>
         ) : (
+          /* FORM */
           <form className="space-y-6" onSubmit={handleSubmit}>
             <input
               className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded"
@@ -89,7 +97,7 @@ export default function ContactPage() {
 
             <input
               className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded"
-              placeholder="Project Type (Metal, Plastic, Tumblers, Firearms, etc.)"
+              placeholder="Project Type (metal engraving, tumbler, firearm, etc.)"
               value={projectType}
               onChange={(e) => setProjectType(e.target.value)}
             />
@@ -104,7 +112,7 @@ export default function ContactPage() {
 
             {/* FILE UPLOAD */}
             <div>
-              <label className="block mb-2 text-gray-400">Upload a File (optional)</label>
+              <label className="block mb-2 text-gray-400">Upload Artwork / File (optional)</label>
               <input
                 type="file"
                 className="w-full bg-zinc-800 border border-zinc-700 p-3 rounded"
@@ -112,11 +120,12 @@ export default function ContactPage() {
               />
             </div>
 
+            {/* SUBMIT */}
             <button
               type="submit"
               className="w-full bg-amber-500 text-black font-bold py-3 rounded hover:bg-amber-400 transition"
             >
-              Submit Quote Request
+              Submit Project
             </button>
           </form>
         )}
