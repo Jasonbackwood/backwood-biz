@@ -1,8 +1,10 @@
 "use client";
+
 import { useState } from "react";
+import SocialLinks from "../../components/SocialLinks";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,103 +16,108 @@ export default function ContactPage() {
       message: e.target.message.value,
     };
 
-    import SocialLinks from "../../components/SocialLinks";
+    setStatus("Sending...");
 
-...
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-<div className="mt-8">
-  <h3 className="text-xl font-semibold mb-2">Connect With Us</h3>
-  <SocialLinks />
-</div>
-
-    await fetch("/api/send-contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    setSubmitted(true);
+      if (response.ok) {
+        setStatus("Message Sent!");
+        e.target.reset();
+      } else {
+        setStatus("Failed to send. Try again.");
+      }
+    } catch (err) {
+      setStatus("Error sending message.");
+    }
   };
 
   return (
-    <div className="text-white pt-28 pb-20 px-6 max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold text-center mb-4">Contact Us</h1>
+    <section className="min-h-screen pt-32 pb-20 text-white max-w-4xl mx-auto px-4">
+      <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
 
-      <p className="text-center text-gray-300 mb-10">
-        Send a message — we'll get back to you as soon as possible.
-      </p>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-black/50 p-6 rounded-lg space-y-4"
+      >
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          required
+          className="w-full p-3 rounded bg-black/40 border border-gray-700"
+        />
 
-      {submitted ? (
-        <div className="text-center p-6 bg-green-700 rounded-lg">
-          <h2 className="text-2xl font-bold mb-2">Message Sent!</h2>
-          <p>We’ll reply shortly.</p>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          className="w-full p-3 rounded bg-black/40 border border-gray-700"
+        />
 
-          <a
-            href="/"
-            className="inline-block mt-6 bg-yellow-600 hover:bg-yellow-700 px-6 py-3 rounded"
-          >
-            Back to Home
-          </a>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-4 bg-gray-900 p-6 rounded-lg">
-          <input
-            name="name"
-            className="w-full p-3 rounded bg-gray-800 border border-gray-700"
-            placeholder="Name"
-            required
-          />
+        <input
+          type="text"
+          name="phone"
+          placeholder="Phone Number"
+          className="w-full p-3 rounded bg-black/40 border border-gray-700"
+        />
 
-          <input
-            name="email"
-            className="w-full p-3 rounded bg-gray-800 border border-gray-700"
-            placeholder="Email"
-            required
-          />
+        <textarea
+          name="message"
+          placeholder="Tell us about your project..."
+          rows={5}
+          required
+          className="w-full p-3 rounded bg-black/40 border border-gray-700"
+        ></textarea>
 
-          <input
-            name="phone"
-            className="w-full p-3 rounded bg-gray-800 border border-gray-700"
-            placeholder="Phone Number"
-            required
-          />
+        <button
+          type="submit"
+          className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded"
+        >
+          Send Message
+        </button>
 
-          <textarea
-            name="message"
-            className="w-full h-32 p-3 rounded bg-gray-800 border border-gray-700"
-            placeholder="Your message..."
-            required
-          />
+        {status && <p className="text-center text-gray-300">{status}</p>}
+      </form>
 
-          <button className="w-full bg-yellow-600 hover:bg-yellow-700 py-3 rounded font-semibold">
-            Send Message
-          </button>
-        </form>
-      )}
+      {/* Social Links */}
+      <div className="mt-12 text-center">
+        <h3 className="text-xl font-semibold mb-3">Connect With Us</h3>
+        <SocialLinks className="justify-center" />
+      </div>
 
-      {/* BUSINESS ADDRESS */}
-      <div className="text-center mt-16">
-        <h2 className="text-2xl font-bold">Business Address</h2>
-        <p className="mt-2">Backwood Illuminated LLC</p>
+      {/* Business Address */}
+      <div className="mt-16 text-center">
+        <h2 className="text-2xl font-bold mb-2">Business Address</h2>
+        <p>Backwood Illuminated LLC</p>
         <p>Woods Cross, Utah 84087</p>
       </div>
 
-      {/* ABOUT US */}
-      <div className="text-center mt-10 text-gray-300 leading-relaxed">
-        <h2 className="text-2xl font-bold mb-3 text-white">A Bit About Us</h2>
-        <p>
-          Backwood Illuminated is a Utah-based engraving studio specializing in high-precision
-          Fiber, UV, and CO₂ laser marking. We combine modern tech with rugged Utah work ethic to
-          deliver clean detail, durability, and fast turnaround — every time.
+      {/* About Us */}
+      <div className="mt-12 text-center max-w-2xl mx-auto">
+        <h2 className="text-2xl font-bold mb-2">A Bit About Us</h2>
+        <p className="text-gray-300">
+          Based in Woods Cross, Utah — Backwood Illuminated brings craftsmanship,
+          precision, and rugged creativity to every engraving project. Whether it’s
+          corporate branding or custom one-off pieces, we combine modern laser tech 
+          with real Utah work ethic. If you want something built with pride, built 
+          to last, and built to turn heads — you’re in the right place.
         </p>
+      </div>
 
+      <div className="mt-12 flex justify-center">
         <a
           href="/"
-          className="inline-block mt-6 bg-yellow-600 hover:bg-yellow-700 px-6 py-3 rounded"
+          className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded"
         >
           Back to Home
         </a>
       </div>
-    </div>
+    </section>
   );
 }
