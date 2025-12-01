@@ -19,6 +19,18 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-3xl">
+
+          {/* LOGO AT TOP OF HERO */}
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/logo.jpg"       // <-- make sure file is /public/logo.jpg
+              alt="Backwood Illuminated Logo"
+              width={220}            // bigger logo
+              height={220}
+              className="rounded-full object-contain"
+            />
+          </div>
+
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Backwood Illuminated
           </h1>
@@ -42,6 +54,7 @@ export default function HomePage() {
               Contact Us
             </Link>
           </div>
+
         </div>
       </section>
 
