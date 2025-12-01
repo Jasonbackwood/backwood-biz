@@ -14,6 +14,7 @@ export default function Home() {
           backgroundImage: "url('/forest-fog-bg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Dark overlay */}
@@ -52,13 +53,6 @@ export default function Home() {
             >
               Contact Us
             </Link>
-
-            <Link
-              href="/customize"
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
-            >
-              Customize Your Own
-            </Link>
           </div>
         </div>
       </section>
@@ -76,13 +70,10 @@ export default function Home() {
       <section id="recent-work" className="py-20 bg-black text-white">
         <div className="max-w-6xl mx-auto px-6 text-center">
 
-          <h2 className="text-4xl font-bold mb-10 tracking-wide">
-            Recent Work
-          </h2>
+          <h2 className="text-4xl font-bold mb-10 tracking-wide">Recent Work</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            {/* IMAGE 1 */}
             <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
               <img
                 src="/images/recent1.jpg"
@@ -91,7 +82,6 @@ export default function Home() {
               />
             </div>
 
-            {/* IMAGE 2 */}
             <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
               <img
                 src="/images/recent2.jpg"
@@ -100,7 +90,6 @@ export default function Home() {
               />
             </div>
 
-            {/* IMAGE 3 */}
             <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
               <img
                 src="/images/recent3.jpg"
@@ -111,7 +100,6 @@ export default function Home() {
 
           </div>
 
-          {/* Gallery Button */}
           <div className="mt-10">
             <Link
               href="/gallery"
@@ -139,6 +127,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
     </main>
   );
 }
