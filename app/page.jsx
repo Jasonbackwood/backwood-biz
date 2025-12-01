@@ -1,134 +1,92 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
-
 export default function Home() {
   return (
-    <main className="bg-black text-white">
+    <main className="min-h-screen bg-black text-white">
 
       {/* HERO SECTION */}
-      <section
-        className="relative w-full h-[90vh] flex flex-col justify-center items-center text-center px-6"
-        style={{
-          backgroundImage: "url('/hero-forest.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <section className="text-center py-20 px-6">
+        <Image
+          src="/logo.png"
+          alt="Backwood Illuminated Logo"
+          width={260}
+          height={260}
+          className="mx-auto mb-6"
+        />
+        <h1 className="text-5xl font-bold mb-4">Backwood Illuminated LLC</h1>
+        <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+          Custom laser engraving, UV printing, fiber engraving, hat patches, tumblers,
+          company branding, and specialty custom work right here in Utah.
+        </p>
 
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black opacity-60"></div>
+        {/* MAIN ACTION BUTTONS */}
+        <div className="flex flex-col md:flex-row justify-center gap-4 mt-10">
 
-        {/* CONTENT */}
-        <div className="relative z-10 flex flex-col items-center">
+          <Link
+            href="/submit-project"
+            className="px-8 py-3 bg-amber-500 text-black font-semibold rounded hover:bg-amber-400 transition"
+          >
+            Submit a Project / Get a Quote
+          </Link>
 
-          {/* LOGO */}
-          <Image
-            src="/logo.png"
-            alt="Backwood Illuminated Logo"
-            width={220}
-            height={220}
-            className="mb-4 drop-shadow-xl"
-          />
+          <Link
+            href="/contact"
+            className="px-8 py-3 bg-gray-700 font-semibold rounded hover:bg-gray-600 transition"
+          >
+            Contact Us
+          </Link>
 
-          {/* TITLE */}
-          <h1 className="text-5xl md:text-6xl font-bold mt-4">
-            Backwood Illuminated
-          </h1>
+          <Link
+            href="/customize"
+            className="px-8 py-3 bg-green-600 text-black font-semibold rounded hover:bg-green-500 transition"
+          >
+            Customize Your Own
+          </Link>
 
-          <p className="text-xl mt-4 text-gray-300 max-w-2xl">
-            High-Detail Laser Engraving for Corporate, Industrial & Personal Projects
-          </p>
-
-          {/* HERO BUTTONS */}
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <a
-              href="/submit-project"
-              className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 px-6 rounded shadow-lg transition"
-            >
-              Submit a Project / Custom Quote
-            </a>
-            <a
-              href="/contact"
-              className="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded shadow-lg transition"
-            >
-              Contact Us
-            </a>
-          </div>
         </div>
       </section>
 
-     {/* -------------------- RECENT WORK SECTION -------------------- */}
-<section className="bg-zinc-950 py-20 px-6">
-  <div className="max-w-6xl mx-auto">
+      {/* RECENT WORK */}
+      <section className="px-6 py-16 bg-gray-900">
+        <h2 className="text-4xl font-bold text-center mb-10">Recent Work</h2>
 
-    <h2 className="text-4xl font-bold text-center mb-12">
-      Recent Work
-    </h2>
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
 
-    {/* Image Grid */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-
-      {[
-        "/gallery/8569108F-9B84-4699-B7E0-8DEDD6225975.JPEG",
-        "/gallery/BEAA76F1-E865-460D-8C25-7E2326CCB27D.JPEG",
-        "/gallery/C8A9A17D-212E-46CF-BAD2-52F13F5EC417.JPEG",
-      ].map((src, index) => (
-        <div
-          key={index}
-          className="relative aspect-square rounded-lg overflow-hidden"
-        >
           <Image
-            src={src}
-            alt={`Recent Work ${index + 1}`}
-            fill
-            className="object-cover hover:scale-105 transition duration-300"
+            src="/gallery/hat1.png"
+            alt="Custom Patch Hat"
+            width={500}
+            height={500}
+            className="rounded-lg shadow-lg"
           />
+
+          <Image
+            src="/gallery/tumbler1.png"
+            alt="Laser Engraved Tumbler"
+            width={500}
+            height={500}
+            className="rounded-lg shadow-lg"
+          />
+
+          <Image
+            src="/gallery/sign1.png"
+            alt="Laser Engraved Wood Sign"
+            width={500}
+            height={500}
+            className="rounded-lg shadow-lg"
+          />
+
         </div>
-      ))}
 
-    </div>
-
-    {/* Button to full gallery page */}
-    <div className="text-center mt-10">
-      <Link
-        href="/engraving-gallery"
-        className="inline-block px-8 py-3 text-black font-semibold bg-amber-500 rounded-md hover:bg-amber-400 transition"
-      >
-        View Full Gallery
-      </Link>
-    </div>
-
-  </div>
-</section>
-
-      {/* WHY CHOOSE US */}
-      <section className="py-20 bg-gray-900 px-6 text-center">
-        <h2 className="text-4xl font-bold mb-6">Why Choose Us?</h2>
-
-        <p className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
-          We specialize in high-detail laser engraving using CO₂, UV, and Fiber technology.
-          From corporate branding to custom industrial tags, firearms, tumblers, hat patches,
-          and more — we deliver precision, durability, and fast turnaround.
-        </p>
-      </section>
-
-      {/* START PROJECT TODAY */}
-      <section className="py-20 px-6 text-center">
-        <h2 className="text-4xl font-bold mb-6">Start Your Project Today</h2>
-        <p className="text-gray-300 max-w-3xl mx-auto text-lg mb-8">
-          Whether you need a single custom piece or bulk production, Backwood Illuminated
-          delivers top-tier engraving with rugged Utah craftsmanship.
-        </p>
-
-        <a
-          href="/submit-project"
-          className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 px-8 rounded shadow-lg transition"
-        >
-          Get a Custom Quote
-        </a>
+        <div className="text-center mt-10">
+          <Link
+            href="/gallery"
+            className="px-8 py-3 bg-amber-500 text-black font-semibold rounded hover:bg-amber-400 transition"
+          >
+            View Full Gallery
+          </Link>
+        </div>
       </section>
     </main>
   );
