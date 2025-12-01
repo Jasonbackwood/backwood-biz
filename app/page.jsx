@@ -108,6 +108,5 @@ export default function Home() {
         View Full Gallery
       </Link>
     </div>
-
   </div>
 </section>
