@@ -3,73 +3,53 @@
 import { useState } from "react";
 
 export default function ContactPage() {
+  const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [details, setDetails] = useState("");
-  const [file, setFile] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("phone", phone);
-    formData.append("details", details);
-    if (file) formData.append("file", file);
+    const data = { name, email, phone, message };
 
-    const res = await fetch("/api/send-quote", {
+    const res = await fetch("/api/send-contact", {
       method: "POST",
-      body: formData,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
 
-    if (res.ok) {
-      setSubmitted(true);
-      setName("");
-      setEmail("");
-      setPhone("");
-      setDetails("");
-      setFile(null);
-    } else {
-      alert("There was an error submitting your request.");
-    }
+    if (res.ok) setSubmitted(true);
   };
 
-  if (submitted) {
+  if (submitted)
     return (
-      <div className="min-h-screen bg-[#0d0d0d] text-white flex flex-col items-center justify-center px-4">
-        <h1 className="text-3xl font-bold mb-4">Thank You!</h1>
-        <p className="text-lg mb-6 text-center max-w-xl">
-          Your project request / quote submission has been received.
-          We’ll review your details and reach out shortly.
+      <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
+        <h1 className="text-3xl font-bold mb-4">Message Sent!</h1>
+        <p className="text-lg text-gray-300 max-w-xl text-center">
+          Thanks for reaching out — we’ll get back to you shortly.
         </p>
 
         <a
           href="/"
-          className="bg-yellow-500 hover:bg-yellow-600 text-black py-2 px-6 rounded font-semibold"
+          className="mt-6 bg-yellow-500 hover:bg-yellow-600 py-2 px-6 rounded text-black font-semibold"
         >
           Back to Home
         </a>
       </div>
     );
-  }
 
   return (
     <div className="bg-[#0c0c0c] text-white min-h-screen pt-32 pb-20 px-6">
       <div className="max-w-3xl mx-auto">
 
-        {/* TITLE */}
-        <h1 className="text-4xl font-bold mb-6 text-center">
-          Submit a Project / Custom Quote
-        </h1>
+        <h1 className="text-4xl font-bold mb-6 text-center">Contact Us</h1>
 
         <p className="text-center text-gray-300 mb-10">
-          Have a project in mind? Send us your details and we’ll get back to you with pricing, options, and next steps.
+          Have questions? Need help with an order? Send us a message below.
         </p>
 
-        {/* FORM */}
         <form
           onSubmit={handleSubmit}
           className="bg-[#111] p-6 rounded-lg shadow-lg space-y-4"
@@ -98,35 +78,24 @@ export default function ContactPage() {
             className="w-full p-3 rounded bg-[#1a1a1a] border border-gray-700"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            required
           />
 
           <textarea
-            placeholder="Tell us about your project..."
+            placeholder="Your Message..."
             className="w-full p-3 rounded bg-[#1a1a1a] border border-gray-700 h-32"
-            value={details}
-            onChange={(e) => setDetails(e.target.value)}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             required
           />
-
-          <div>
-            <label className="block mb-2 text-gray-300">Upload File (optional)</label>
-            <input
-              type="file"
-              className="w-full text-gray-300"
-              onChange={(e) => setFile(e.target.files[0])}
-            />
-          </div>
 
           <button
             type="submit"
             className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 rounded"
           >
-            Submit
+            Send Message
           </button>
         </form>
 
-        {/* BUSINESS ADDRESS */}
         <div className="text-center mt-16">
           <h2 className="text-2xl font-bold mb-2">Business Address</h2>
           <p className="text-gray-300">
@@ -136,18 +105,13 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* ABOUT US */}
         <div className="text-center mt-16 max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-4">A Bit About Us</h2>
           <p className="text-gray-300 leading-relaxed mb-10">
-            Based in Woods Cross, Utah — Backwood Illuminated brings craftsmanship, precision,
-            and rugged creativity to every engraving project. From corporate branding to personal
-            one-off customs, we combine modern laser tech with a hardworking Utah work ethic.
-            If you want something built with pride, built to last, and built with detail that
-            turns heads — you’re in the right place.
+            Utah-built, Utah-tough. We bring craftsmanship, precision, and rugged creativity
+            into every engraving project — from corporate orders to personal, one-of-a-kind pieces.
           </p>
 
-          {/* BACK TO HOME BUTTON */}
           <a
             href="/"
             className="bg-yellow-500 hover:bg-yellow-600 text-black py-2 px-6 rounded font-semibold inline-block"
