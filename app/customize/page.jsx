@@ -1,137 +1,100 @@
 "use client";
 
-import { useState, useRef } from "react";
-import Image from "next/image";
+import { useState } from "react";
 import { Stage, Layer, Image as KonvaImage } from "react-konva";
 
-export default function CustomizeYourOwn() {
-  const [product, setProduct] = useState("tumbler");
-  const [files, setFiles] = useState([]);
-  const [konvaImages, setKonvaImages] = useState([]);
-  const [notes, setNotes] = useState("");
-  const [qty, setQty] = useState("");
-  const stageRef = useRef(null);
+// Disable SSR/prerendering – REQUIRED for Konva to work on Vercel
+export const dynamic = "force-dynamic";
 
-  const productMockups = {
-    tumbler: "/mockups/tumbler.png",
-    hat: "/mockups/hat.png",
-    patch: "/mockups/patch.png",
+export default function CustomizePage() {
+  const [productImg, setProductImg] = useState(null);
+  const [uploads, setUploads] = useState([]);
+
+  // Load product image preview
+  const handleProductUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const img = new window.Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => setProductImg(img);
   };
 
-  const handleFileUpload = (e) => {
-    const uploads = [...e.target.files];
-    setFiles((prev) => [...prev, ...uploads]);
+  // Load multiple design uploads
+  const handleDesignUpload = (e) => {
+    const files = Array.from(e.target.files || []);
+    const newUploads = [];
 
-    uploads.forEach((file) => {
+    files.forEach((file) => {
       const img = new window.Image();
       img.src = URL.createObjectURL(file);
       img.onload = () => {
-        setKonvaImages((prev) => [...prev, { img, x: 50, y: 50 }]);
+        newUploads.push(img);
+        if (newUploads.length === files.length) {
+          setUploads((prev) => [...prev, ...newUploads]);
+        }
       };
     });
   };
 
-  const handleSubmit = async () => {
-    const mockupImage = stageRef.current.toDataURL();
-
-    const formData = new FormData();
-    formData.append("product", product);
-    formData.append("notes", notes);
-    formData.append("qty", qty);
-    formData.append("mockup", mockupImage);
-
-    files.forEach((file) => {
-      formData.append("uploads", file);
-    });
-
-    await fetch("/api/send-custom-mockup", {
-      method: "POST",
-      body: formData,
-    });
-
-    alert("Your custom mockup has been submitted!");
-  };
-
   return (
-    <div className="min-h-screen bg-black text-white py-16 px-6">
-      <h1 className="text-4xl font-bold text-center mb-4">
+    <main className="min-h-screen bg-black text-white p-6">
+      <h1 className="text-4xl font-bold text-center mb-8">
         Customize & Make It Your Own
       </h1>
-      <p className="text-center mb-12 text-gray-300">
-        Build your perfect mockup. Upload your artwork, place it on the product,
-        and send it for a custom quote.
+
+      <p className="text-center max-w-2xl mx-auto text-gray-300 mb-10">
+        Upload your product image (tumblers, patches, guns, tools, etc.) and overlay 
+        your artwork, logo, or custom design. When you're ready, submit your setup 
+        for a custom quote.
       </p>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-        
-        {/* -------- LEFT PANEL -------- */}
-        <div className="bg-zinc-900 p-6 rounded-xl">
-          <h2 className="text-xl mb-4">Product Selection</h2>
-
-          <select
-            value={product}
-            onChange={(e) => setProduct(e.target.value)}
-            className="w-full bg-black border border-gray-700 text-white px-3 py-2 rounded mb-6"
-          >
-            <option value="tumbler">Tumbler</option>
-            <option value="hat">Hat</option>
-            <option value="patch">Patch</option>
-          </select>
-
-          <h2 className="text-xl mt-4 mb-2">Upload Artwork</h2>
+      {/* Upload Controls */}
+      <div className="max-w-xl mx-auto flex flex-col gap-6 mb-12">
+        <div>
+          <label className="block font-semibold mb-2">Upload Product Image</label>
           <input
             type="file"
-            multiple
-            onChange={handleFileUpload}
-            className="w-full bg-black border border-gray-700 py-2 rounded"
-          />
-
-          <h2 className="text-xl mt-6 mb-2">Quantity</h2>
-          <input
-            type="number"
-            value={qty}
-            onChange={(e) => setQty(e.target.value)}
-            className="w-full bg-black border border-gray-700 py-2 rounded text-white"
-          />
-
-          <h2 className="text-xl mt-6 mb-2">Notes</h2>
-          <textarea
-            rows="5"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            className="w-full bg-black border border-gray-700 p-2 rounded"
+            accept="image/*"
+            onChange={handleProductUpload}
+            className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded"
           />
         </div>
 
-        {/* -------- MOCKUP CANVAS -------- */}
-        <div className="col-span-2 bg-zinc-900 p-4 rounded-xl flex justify-center">
-          <Stage
-            width={500}
-            height={500}
-            ref={stageRef}
-            style={{ background: "#111", borderRadius: "10px" }}
-          >
+        <div>
+          <label className="block font-semibold mb-2">Upload Design Files</label>
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleDesignUpload}
+            className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded"
+          />
+        </div>
+      </div>
+
+      {/* Mockup Canvas */}
+      <div className="flex justify-center mb-12">
+        <div className="bg-zinc-900 p-4 rounded-xl border border-zinc-700">
+          <Stage width={500} height={500}>
             <Layer>
-              {productMockups[product] && (
+              {productImg && (
                 <KonvaImage
-                  image={(() => {
-                    const img = new window.Image();
-                    img.src = productMockups[product];
-                    return img;
-                  })()}
-                  x={0}
-                  y={0}
+                  image={productImg}
                   width={500}
                   height={500}
+                  opacity={0.9}
                 />
               )}
 
-              {konvaImages.map((item, index) => (
+              {uploads.map((img, i) => (
                 <KonvaImage
-                  key={index}
-                  image={item.img}
-                  x={item.x}
-                  y={item.y}
+                  key={i}
+                  image={img}
+                  x={50 + i * 30}
+                  y={50 + i * 30}
+                  width={150}
+                  height={150}
                   draggable
                 />
               ))}
@@ -140,15 +103,15 @@ export default function CustomizeYourOwn() {
         </div>
       </div>
 
-      {/* -------- SUBMIT BUTTON -------- */}
-      <div className="text-center mt-10">
-        <button
-          onClick={handleSubmit}
-          className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-10 py-3 rounded-lg"
+      {/* Submit for Quote */}
+      <div className="text-center">
+        <a
+          href="/submit-project"
+          className="px-8 py-3 bg-amber-500 text-black font-semibold rounded hover:bg-amber-400 transition"
         >
-          Submit Mockup for Quote
-        </button>
+          Submit for Quote
+        </a>
       </div>
-    </div>
+    </main>
   );
 }
