@@ -1,53 +1,62 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 export async function POST(req) {
   try {
-    const form = await req.formData();
+    const formData = await req.formData();
 
-    const name = form.get("name");
-    const email = form.get("email");
-    const phone = form.get("phone");
-    const projectType = form.get("projectType");
-    const details = form.get("details");
-    const file = form.get("file");
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const details = formData.get("details");
 
-    let attachment = null;
-
-    if (file && typeof file === "object") {
-      const bytes = await file.arrayBuffer();
-      attachment = {
-        filename: file.name,
-        content: Buffer.from(bytes),
-      };
-    }
+    const receivedFiles = formData.getAll("files");
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
       },
     });
 
-    await transporter.sendMail({
-      from: `"Backwood Illuminated" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO,
-      subject: "New Custom Quote Request",
-      html: `
-        <h2>New Quote Request</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Project Type:</strong> ${projectType}</p>
-        <p><strong>Details:</strong><br>${details}</p>
-      `,
-      attachments: attachment ? [attachment] : [],
-    });
+    const mailOptions = {
+      from: `"Backwood Website" <${process.env.GMAIL_USER}>`,
+      to: process.env.SEND_TO,
+      subject: `New Project Submission from ${name}`,
+      text: `
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
 
-    return NextResponse.json({ success: true });
+Project Details:
+${details}
+      `,
+      attachments: [],
+    };
+
+    // Add every file to email
+    for (const file of receivedFiles) {
+      if (file && file.name) {
+        const buffer = Buffer.from(await file.arrayBuffer());
+
+        mailOptions.attachments.push({
+          filename: file.name,
+          content: buffer,
+        });
+      }
+    }
+
+    await transporter.sendMail(mailOptions);
+    return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
-    console.error("EMAIL SEND ERROR:", err);
-    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+    console.error("QUOTE ERROR:", err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
