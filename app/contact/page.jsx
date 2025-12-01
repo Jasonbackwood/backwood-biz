@@ -8,22 +8,28 @@ export default function ContactPage() {
   const [phone, setPhone] = useState("");
   const [projectType, setProjectType] = useState("");
   const [details, setDetails] = useState("");
+  const [file, setFile] = useState(null);
+
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = {
-      name,
-      email,
-      phone,
-      projectType,
-      details,
-    };
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("projectType", projectType);
+    formData.append("details", details);
+
+    if (file) {
+      formData.append("file", file);
+    }
 
     const res = await fetch("/api/send-quote", {
       method: "POST",
-      body: JSON.stringify(formData),
+      body: formData,
     });
 
     if (res.ok) {
@@ -33,6 +39,7 @@ export default function ContactPage() {
       setPhone("");
       setProjectType("");
       setDetails("");
+      setFile(null);
     }
   };
 
@@ -72,7 +79,7 @@ export default function ContactPage() {
 
             <input
               className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded"
-              placeholder="Project Type (metal, plastic, engraving type...)"
+              placeholder="Project Type (Metal, Plastic, Tumblers, Firearms, etc.)"
               value={projectType}
               onChange={(e) => setProjectType(e.target.value)}
             />
@@ -84,6 +91,16 @@ export default function ContactPage() {
               onChange={(e) => setDetails(e.target.value)}
               required
             ></textarea>
+
+            {/* FILE UPLOAD FIELD */}
+            <div>
+              <label className="block mb-2 text-gray-400">Upload a File (optional)</label>
+              <input
+                type="file"
+                className="w-full bg-zinc-800 border border-zinc-700 p-3 rounded"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+            </div>
 
             <button
               type="submit"
