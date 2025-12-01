@@ -67,67 +67,47 @@ export default function Home() {
       </section>
 
       {/* RECENT WORK SECTION */}
-      <section id="recent-work" className="py-20 bg-black text-white">
-        <div className="max-w-6xl mx-auto px-6 text-center">
+<section id="recent-work" className="py-20 bg-black text-white">
+  <div className="max-w-6xl mx-auto px-6 text-center">
 
-          <h2 className="text-4xl font-bold mb-10 tracking-wide">Recent Work</h2>
+    <h2 className="text-4xl font-bold mb-10 tracking-wide">Recent Work</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
-              <img
-                src="/images/recent1.jpg"
-                alt="Recent project 1"
-                className="w-full h-64 object-cover"
-              />
-            </div>
+      <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
+        <img
+          src="/gallery/8569108F-9B84-4699-B7E0-8DEDD6225975.JPEG"
+          alt="Recent project 1"
+          className="w-full h-64 object-cover"
+        />
+      </div>
 
-            <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
-              <img
-                src="/images/recent2.jpg"
-                alt="Recent project 2"
-                className="w-full h-64 object-cover"
-              />
-            </div>
+      <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
+        <img
+          src="/gallery/BEAA76F1-E865-460D-8C25-7E2326CCB27D.JPEG"
+          alt="Recent project 2"
+          className="w-full h-64 object-cover"
+        />
+      </div>
 
-            <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
-              <img
-                src="/images/recent3.jpg"
-                alt="Recent project 3"
-                className="w-full h-64 object-cover"
-              />
-            </div>
+      <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
+        <img
+          src="/gallery/C8A9A17D-212E-46CF-BAD2-52F13F5EC417.JPEG"
+          alt="Recent project 3"
+          className="w-full h-64 object-cover"
+        />
+      </div>
 
-          </div>
+    </div>
 
-          <div className="mt-10">
-            <Link
-              href="/gallery"
-              className="px-8 py-3 bg-green-600 hover:bg-green-700 transition text-white font-semibold rounded-lg"
-            >
-              View Full Gallery
-            </Link>
-          </div>
-        </div>
-      </section>
+    <div className="mt-10">
+      <Link
+        href="/gallery"
+        className="px-8 py-3 bg-green-600 hover:bg-green-700 transition text-white font-semibold rounded-lg"
+      >
+        View Full Gallery
+      </Link>
+    </div>
 
-      {/* CTA SECTION */}
-      <section className="py-20 px-6 bg-gray-900 text-center">
-        <h2 className="text-4xl font-bold mb-4">Start Your Project Today</h2>
-        <p className="opacity-90 max-w-2xl mx-auto">
-          Whether it’s one piece or a bulk company order, we bring your vision to life with accuracy and detail.
-        </p>
-
-        <div className="mt-8">
-          <Link
-            href="/submit-project"
-            className="px-8 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold"
-          >
-            Submit a Project
-          </Link>
-        </div>
-      </section>
-
-    </main>
-  );
-}
+  </div>
+</section>
