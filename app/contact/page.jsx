@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
@@ -16,7 +17,6 @@ export default function ContactPage() {
     e.preventDefault();
 
     const formData = new FormData();
-
     formData.append("name", name);
     formData.append("email", email);
     formData.append("phone", phone);
@@ -49,9 +49,19 @@ export default function ContactPage() {
         <h1 className="text-4xl font-bold mb-6 text-center">Get a Custom Quote</h1>
 
         {submitted ? (
-          <p className="text-green-400 text-center text-xl">
-            Thank you! Your request has been sent.
-          </p>
+          <div className="text-center space-y-6">
+            <p className="text-green-400 text-xl">
+              Thank you! Your request has been sent.
+            </p>
+
+            {/* BACK TO HOME BUTTON */}
+            <Link
+              href="/"
+              className="inline-block px-6 py-3 bg-amber-500 text-black font-bold rounded-md hover:bg-amber-400 transition"
+            >
+              Back to Home Page
+            </Link>
+          </div>
         ) : (
           <form className="space-y-6" onSubmit={handleSubmit}>
             <input
@@ -92,7 +102,7 @@ export default function ContactPage() {
               required
             ></textarea>
 
-            {/* FILE UPLOAD FIELD */}
+            {/* FILE UPLOAD */}
             <div>
               <label className="block mb-2 text-gray-400">Upload a File (optional)</label>
               <input
