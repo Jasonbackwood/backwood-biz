@@ -1,10 +1,12 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import dynamicImport from "next/dynamic";
+
+// Required for Konva to avoid prerendering
 export const dynamic = "force-dynamic";
 
 // Dynamically import Konva editor client-only
-const MockupEditor = dynamic(() => import("./MockupEditor"), {
+const MockupEditor = dynamicImport(() => import("./MockupEditor"), {
   ssr: false,
 });
 
@@ -16,8 +18,9 @@ export default function CustomizePage() {
       </h1>
 
       <p className="text-center max-w-2xl mx-auto text-gray-300 mb-10">
-        Upload your product image and custom designs. Position them exactly how
-        you want, then submit everything for a custom quote.
+        Upload your product image and your design files. Position them on the
+        product preview exactly how you want — then submit everything for a
+        custom quote.
       </p>
 
       <MockupEditor />
