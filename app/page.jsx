@@ -56,34 +56,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RECENT WORK SECTION */}
-      <section className="py-20 px-6 max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-10">Recent Work</h2>
+     {/* -------------------- RECENT WORK SECTION -------------------- */}
+<section className="bg-zinc-950 py-20 px-6">
+  <div className="max-w-6xl mx-auto">
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <h2 className="text-4xl font-bold text-center mb-12">
+      Recent Work
+    </h2>
+
+    {/* Image Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+      {[
+        "/gallery/8569108F-9B84-4699-B7E0-8DEDD6225975.JPEG",
+        "/gallery/BEAA76F1-E865-460D-8C25-7E2326CCB27D.JPEG",
+        "/gallery/C8A9A17D-212E-46CF-BAD2-52F13F5EC417.JPEG",
+      ].map((src, index) => (
+        <div
+          key={index}
+          className="relative aspect-square rounded-lg overflow-hidden"
+        >
           <Image
-            src="/gallery/sample1.jpg"
-            width={400}
-            height={300}
-            alt="Sample Work 1"
-            className="rounded-lg shadow-lg"
-          />
-          <Image
-            src="/gallery/sample2.jpg"
-            width={400}
-            height={300}
-            alt="Sample Work 2"
-            className="rounded-lg shadow-lg"
-          />
-          <Image
-            src="/gallery/sample3.jpg"
-            width={400}
-            height={300}
-            alt="Sample Work 3"
-            className="rounded-lg shadow-lg"
+            src={src}
+            alt={`Recent Work ${index + 1}`}
+            fill
+            className="object-cover hover:scale-105 transition duration-300"
           />
         </div>
-      </section>
+      ))}
+
+    </div>
+
+    {/* Button to full gallery page */}
+    <div className="text-center mt-10">
+      <Link
+        href="/engraving-gallery"
+        className="inline-block px-8 py-3 text-black font-semibold bg-amber-500 rounded-md hover:bg-amber-400 transition"
+      >
+        View Full Gallery
+      </Link>
+    </div>
+
+  </div>
+</section>
 
       {/* WHY CHOOSE US */}
       <section className="py-20 bg-gray-900 px-6 text-center">
