@@ -1,101 +1,144 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="bg-black text-white">
 
       {/* HERO SECTION */}
-      <section className="text-center py-20 px-6">
-        <Image
-          src="/logo.png"
-          alt="Backwood Illuminated Logo"
-          width={260}
-          height={260}
-          className="mx-auto mb-6"
-        />
-        <h1 className="text-5xl font-bold mb-4">Backwood Illuminated LLC</h1>
-        <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-          Custom laser engraving, UV printing, fiber engraving, hat patches, tumblers,
-          company branding, and specialty custom work right here in Utah.
-        </p>
+      <section
+        className="relative h-screen w-full flex items-center justify-center"
+        style={{
+          backgroundImage: "url('/forest-fog-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
 
-        {/* MAIN ACTION BUTTONS */}
-        <div className="flex flex-col md:flex-row justify-center gap-4 mt-10">
+        <div className="relative z-10 text-center px-6">
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/logo.png"
+              width={260}
+              height={260}
+              alt="Backwood Illuminated Logo"
+              className="rounded-full"
+              priority
+            />
+          </div>
 
-          <Link
-            href="/submit-project"
-            className="px-8 py-3 bg-amber-500 text-black font-semibold rounded hover:bg-amber-400 transition"
-          >
-            Submit a Project / Get a Quote
-          </Link>
+          <h1 className="text-5xl font-bold tracking-wide mb-4">
+            Backwood Illuminated
+          </h1>
+          <p className="text-xl max-w-2xl mx-auto opacity-90">
+            Utah’s elite engraving specialists—laser, UV, fiber, and custom branding.
+          </p>
 
-          <Link
-            href="/contact"
-            className="px-8 py-3 bg-gray-700 font-semibold rounded hover:bg-gray-600 transition"
-          >
-            Contact Us
-          </Link>
+          <div className="mt-8 flex justify-center gap-4">
+            <Link
+              href="/submit-project"
+              className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold"
+            >
+              Submit a Project
+            </Link>
 
-          <Link
-            href="/customize"
-            className="px-8 py-3 bg-green-600 text-black font-semibold rounded hover:bg-green-500 transition"
-          >
-            Customize Your Own
-          </Link>
+            <Link
+              href="/contact"
+              className="px-6 py-3 bg-gray-700 hover:bg-gray-800 rounded-lg font-semibold"
+            >
+              Contact Us
+            </Link>
 
+            <Link
+              href="/customize"
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
+            >
+              Customize Your Own
+            </Link>
+          </div>
         </div>
       </section>
 
-{/* Recent Work Section */}
-<section id="recent-work" className="py-20 bg-black text-white">
-  <div className="max-w-6xl mx-auto px-6 text-center">
+      {/* WHY CHOOSE US */}
+      <section className="py-20 px-6 max-w-6xl mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-6">Why Choose Us</h2>
+        <p className="text-lg opacity-90 max-w-3xl mx-auto">
+          Precision engraving, fast turnaround, Utah-based craftsmanship, and the tools to tackle
+          any project—from custom tumblers to industrial-grade fiber engraving.
+        </p>
+      </section>
 
-    <h2 className="text-4xl font-bold mb-10 tracking-wide">
-      Recent Work
-    </h2>
+      {/* RECENT WORK SECTION */}
+      <section id="recent-work" className="py-20 bg-black text-white">
+        <div className="max-w-6xl mx-auto px-6 text-center">
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <h2 className="text-4xl font-bold mb-10 tracking-wide">
+            Recent Work
+          </h2>
 
-      {/* IMAGE 1 */}
-      <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
-        <img
-          src="/images/recent1.jpg"
-          alt="Recent project 1"
-          className="w-full h-64 object-cover"
-        />
-      </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      {/* IMAGE 2 */}
-      <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
-        <img
-          src="/images/recent2.jpg"
-          alt="Recent project 2"
-          className="w-full h-64 object-cover"
-        />
-      </div>
+            {/* IMAGE 1 */}
+            <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
+              <img
+                src="/images/recent1.jpg"
+                alt="Recent project 1"
+                className="w-full h-64 object-cover"
+              />
+            </div>
 
-      {/* IMAGE 3 */}
-      <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
-        <img
-          src="/images/recent3.jpg"
-          alt="Recent project 3"
-          className="w-full h-64 object-cover"
-        />
-      </div>
+            {/* IMAGE 2 */}
+            <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
+              <img
+                src="/images/recent2.jpg"
+                alt="Recent project 2"
+                className="w-full h-64 object-cover"
+              />
+            </div>
 
-    </div>
+            {/* IMAGE 3 */}
+            <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
+              <img
+                src="/images/recent3.jpg"
+                alt="Recent project 3"
+                className="w-full h-64 object-cover"
+              />
+            </div>
 
-    {/* Gallery Button */}
-    <div className="mt-10">
-      <a
-        href="/gallery"
-        className="px-8 py-3 bg-green-600 hover:bg-green-700 transition text-white font-semibold rounded-lg"
-      >
-        View Full Gallery
-      </a>
-    </div>
+          </div>
 
-  </div>
-</section>
-      
+          {/* Gallery Button */}
+          <div className="mt-10">
+            <Link
+              href="/gallery"
+              className="px-8 py-3 bg-green-600 hover:bg-green-700 transition text-white font-semibold rounded-lg"
+            >
+              View Full Gallery
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="py-20 px-6 bg-gray-900 text-center">
+        <h2 className="text-4xl font-bold mb-4">Start Your Project Today</h2>
+        <p className="opacity-90 max-w-2xl mx-auto">
+          Whether it’s one piece or a bulk company order, we bring your vision to life with accuracy and detail.
+        </p>
+
+        <div className="mt-8">
+          <Link
+            href="/submit-project"
+            className="px-8 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold"
+          >
+            Submit a Project
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+}
