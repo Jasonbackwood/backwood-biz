@@ -1,125 +1,82 @@
 "use client";
-
 import { useState } from "react";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = { name, email, phone, message };
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      phone: e.target.phone.value,
+      message: e.target.message.value,
+    };
 
-    const res = await fetch("/api/send-contact", {
+    await fetch("/api/send-contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(formData),
     });
 
-    if (res.ok) setSubmitted(true);
+    setSubmitted(true);
   };
 
-  if (submitted)
-    return (
-      <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold mb-4">Message Sent!</h1>
-        <p className="text-lg text-gray-300 max-w-xl text-center">
-          Thanks for reaching out — we’ll get back to you shortly.
-        </p>
-
-        <a
-          href="/"
-          className="mt-6 bg-yellow-500 hover:bg-yellow-600 py-2 px-6 rounded text-black font-semibold"
-        >
-          Back to Home
-        </a>
-      </div>
-    );
-
   return (
-    <div className="bg-[#0c0c0c] text-white min-h-screen pt-32 pb-20 px-6">
-      <div className="max-w-3xl mx-auto">
+    <div className="text-white pt-28 pb-20 px-6 max-w-3xl mx-auto">
+      <h1 className="text-4xl font-bold text-center mb-4">Contact Us</h1>
+      <p className="text-center text-gray-300 mb-10">
+        Have a question? Reach out and we’ll get back to you as soon as possible.
+      </p>
 
-        <h1 className="text-4xl font-bold mb-6 text-center">Contact Us</h1>
-
-        <p className="text-center text-gray-300 mb-10">
-          Have questions? Need help with an order? Send us a message below.
-        </p>
-
-        <form
-          onSubmit={handleSubmit}
-          className="bg-[#111] p-6 rounded-lg shadow-lg space-y-4"
-        >
-          <input
-            type="text"
-            placeholder="Name"
-            className="w-full p-3 rounded bg-[#1a1a1a] border border-gray-700"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full p-3 rounded bg-[#1a1a1a] border border-gray-700"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <input
-            type="text"
-            placeholder="Phone Number"
-            className="w-full p-3 rounded bg-[#1a1a1a] border border-gray-700"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-
-          <textarea
-            placeholder="Your Message..."
-            className="w-full p-3 rounded bg-[#1a1a1a] border border-gray-700 h-32"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            required
-          />
-
-          <button
-            type="submit"
-            className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 rounded"
-          >
-            Send Message
-          </button>
-        </form>
-
-        <div className="text-center mt-16">
-          <h2 className="text-2xl font-bold mb-2">Business Address</h2>
-          <p className="text-gray-300">
-            Backwood Illuminated LLC
-            <br />
-            Woods Cross, Utah 84087
-          </p>
-        </div>
-
-        <div className="text-center mt-16 max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4">A Bit About Us</h2>
-          <p className="text-gray-300 leading-relaxed mb-10">
-            Utah-built, Utah-tough. We bring craftsmanship, precision, and rugged creativity
-            into every engraving project — from corporate orders to personal, one-of-a-kind pieces.
-          </p>
+      {submitted ? (
+        <div className="text-center p-6 bg-green-700 rounded-lg">
+          <h2 className="text-2xl font-bold mb-2">Message Sent!</h2>
+          <p>We’ll reply shortly.</p>
 
           <a
             href="/"
-            className="bg-yellow-500 hover:bg-yellow-600 text-black py-2 px-6 rounded font-semibold inline-block"
+            className="inline-block mt-6 bg-yellow-600 hover:bg-yellow-700 px-6 py-3 rounded"
           >
             Back to Home
           </a>
         </div>
-      </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4 bg-gray-900 p-6 rounded-lg">
+          <input
+            name="name"
+            className="w-full p-3 rounded bg-gray-800 border border-gray-700"
+            placeholder="Name"
+            required
+          />
+
+          <input
+            name="email"
+            className="w-full p-3 rounded bg-gray-800 border border-gray-700"
+            placeholder="Email"
+            required
+          />
+
+          <input
+            name="phone"
+            className="w-full p-3 rounded bg-gray-800 border border-gray-700"
+            placeholder="Phone Number"
+            required
+          />
+
+          <textarea
+            name="message"
+            className="w-full h-32 p-3 rounded bg-gray-800 border border-gray-700"
+            placeholder="Your message..."
+            required
+          />
+
+          <button className="w-full bg-yellow-600 hover:bg-yellow-700 py-3 rounded font-semibold">
+            Send
+          </button>
+        </form>
+      )}
     </div>
   );
 }
