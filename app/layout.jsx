@@ -1,8 +1,9 @@
-import "./globals.css";
+import "../styles/globals.css";
 
 export const metadata = {
   title: "Backwood Illuminated",
-  description: "High-detail engraving for corporate, industrial & personal projects.",
+  description:
+    "High-detail engraving for corporate, industrial & personal projects.",
 };
 
 export default function RootLayout({ children }) {
