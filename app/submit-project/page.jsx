@@ -3,11 +3,14 @@ import { useState } from "react";
 
 export default function SubmitProjectPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [file, setFile] = useState(null);
+  const [dragActive, setDragActive] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
+    if (file) formData.append("file", file);
 
     await fetch("/api/send-quote", {
       method: "POST",
@@ -17,20 +20,36 @@ export default function SubmitProjectPage() {
     setSubmitted(true);
   };
 
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") setDragActive(true);
+    else if (e.type === "dragleave") setDragActive(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setFile(e.dataTransfer.files[0]);
+    }
+  };
+
   return (
     <div className="text-white pt-28 pb-20 px-6 max-w-3xl mx-auto">
       <h1 className="text-4xl font-bold text-center mb-4">
         Submit a Project / Custom Quote
       </h1>
+
       <p className="text-center text-gray-300 mb-10">
-        Have a project in mind? Send us your details and we’ll get back to you with pricing,
-        options, and next steps.
+        Send us your details — we'll respond with pricing, turnaround, and engraving options.
       </p>
 
       {submitted ? (
         <div className="text-center p-6 bg-green-700 rounded-lg">
           <h2 className="text-2xl font-bold mb-2">Project Sent!</h2>
-          <p>We’ll review your details and contact you shortly.</p>
+          <p>We’ll contact you shortly.</p>
 
           <a
             href="/"
@@ -40,7 +59,11 @@ export default function SubmitProjectPage() {
           </a>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4 bg-gray-900 p-6 rounded-lg">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 bg-gray-900 p-6 rounded-lg relative"
+          onDragEnter={handleDrag}
+        >
           <input
             name="name"
             className="w-full p-3 rounded bg-gray-800 border border-gray-700"
@@ -69,13 +92,41 @@ export default function SubmitProjectPage() {
             required
           />
 
-          <div>
-            <label className="block mb-2">Upload File (optional)</label>
+          {/* DRAG AND DROP UPLOAD */}
+          <div
+            onDrop={handleDrop}
+            onDragOver={handleDrag}
+            onDragLeave={handleDrag}
+            className={`p-6 border-2 border-dashed rounded-lg text-center transition ${
+              dragActive
+                ? "border-yellow-500 bg-yellow-500/10"
+                : "border-gray-600 bg-gray-800"
+            }`}
+          >
+            <p className="mb-2 text-gray-300">
+              Drag & drop a file here, or click to upload
+            </p>
+
             <input
               type="file"
-              name="file"
-              className="w-full text-gray-300"
+              name="file-upload"
+              className="hidden"
+              id="fileInput"
+              onChange={(e) => setFile(e.target.files[0])}
             />
+
+            <label
+              htmlFor="fileInput"
+              className="cursor-pointer bg-yellow-600 hover:bg-yellow-700 text-black px-4 py-2 rounded inline-block"
+            >
+              Choose File
+            </label>
+
+            {file && (
+              <p className="text-green-400 font-semibold mt-3">
+                Selected: {file.name}
+              </p>
+            )}
           </div>
 
           <button className="w-full bg-yellow-600 hover:bg-yellow-700 py-3 rounded font-semibold">
@@ -84,22 +135,20 @@ export default function SubmitProjectPage() {
         </form>
       )}
 
-      {/* Business Address */}
+      {/* BUSINESS ADDRESS */}
       <div className="text-center mt-16">
         <h2 className="text-2xl font-bold">Business Address</h2>
         <p className="mt-2">Backwood Illuminated LLC</p>
         <p>Woods Cross, Utah 84087</p>
       </div>
 
-      {/* About Us */}
+      {/* ABOUT US */}
       <div className="text-center mt-10 text-gray-300 leading-relaxed">
         <h2 className="text-2xl font-bold mb-3 text-white">A Bit About Us</h2>
         <p>
-          Based in Woods Cross, Utah — Backwood Illuminated blends craftsmanship, modern tech,
-          and rugged creativity into every engraving project. Whether it's corporate branding
-          or personal custom work, we’re committed to delivering precision, durability, and
-          standout detail. If you want something built with pride and made to last, you’re in
-          the right place.
+          Backwood Illuminated blends craftsmanship, modern laser tech, and rugged Utah pride
+          into every engraving project. From industrial tags to personal custom work, we deliver
+          clean detail, durability, and fast turnaround.
         </p>
 
         <a
