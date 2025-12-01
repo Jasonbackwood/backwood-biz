@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 export default function GalleryPage() {
   const images = [
     "/gallery/8569108F-9B84-4699-B7E0-8DEDD6225975.JPEG",
