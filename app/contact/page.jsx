@@ -42,7 +42,7 @@ export default function ContactPage() {
       <div className="min-h-screen bg-[#0d0d0d] text-white flex flex-col items-center justify-center px-4">
         <h1 className="text-3xl font-bold mb-4">Thank You!</h1>
         <p className="text-lg mb-6 text-center max-w-xl">
-          Your project request / quote submission has been received.  
+          Your project request / quote submission has been received.
           We’ll review your details and reach out shortly.
         </p>
 
@@ -139,14 +139,21 @@ export default function ContactPage() {
         {/* ABOUT US */}
         <div className="text-center mt-16 max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-4">A Bit About Us</h2>
-          <p className="text-gray-300 leading-relaxed">
-            Based in Woods Cross, Utah — Backwood Illuminated brings craftsmanship, precision, 
-            and rugged creativity to every engraving project.  
-            From corporate branding to personal one-off customs, we combine modern laser tech 
-            with a hardworking Utah work ethic.  
-            If you want something built with pride, built to last, and built with detail that 
+          <p className="text-gray-300 leading-relaxed mb-10">
+            Based in Woods Cross, Utah — Backwood Illuminated brings craftsmanship, precision,
+            and rugged creativity to every engraving project. From corporate branding to personal
+            one-off customs, we combine modern laser tech with a hardworking Utah work ethic.
+            If you want something built with pride, built to last, and built with detail that
             turns heads — you’re in the right place.
           </p>
+
+          {/* BACK TO HOME BUTTON */}
+          <a
+            href="/"
+            className="bg-yellow-500 hover:bg-yellow-600 text-black py-2 px-6 rounded font-semibold inline-block"
+          >
+            Back to Home
+          </a>
         </div>
       </div>
     </div>
