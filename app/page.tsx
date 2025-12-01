@@ -1,37 +1,41 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
-// AUTO GALLERY USING PUBLIC FOLDER (no fs)
-const galleryImages = Array.from({ length: 20 })
-  .map((_, i) => `/gallery/img${i + 1}.jpg`);
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="flex flex-col bg-black text-white">
+    <main className="text-white">
 
-      {/* ---------------- HERO SECTION ---------------- */}
-      <section
-        className="relative h-[85vh] w-full flex items-center justify-center text-center"
-        style={{
-          backgroundImage: "url('/hero-forest.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="absolute inset-0 bg-black/70" />
+      {/* -------------------- HERO SECTION -------------------- */}
+      <section className="relative h-[90vh] w-full flex items-center justify-center overflow-hidden">
 
-        <div className="relative z-10 px-6">
+        {/* Background Image */}
+        <div className="absolute inset-0">
           <Image
-            src="/logo.png"
-            alt="Backwood Illuminated Logo"
-            width={160}
-            height={160}
-            className="mx-auto mb-6"
+            src="/hero-forest.png"
+            alt="Foggy Forest"
+            fill
+            priority
+            className="object-cover opacity-60"
           />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+        {/* Content */}
+        <div className="relative z-10 text-center px-6 max-w-3xl">
+          
+          {/* Logo */}
+          <div className="mb-6 flex justify-center">
+            <Image
+              src="/logo.jpg"
+              alt="Backwood Illuminated Logo"
+              width={140}
+              height={140}
+              priority
+              className="opacity-90"
+            />
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Backwood Illuminated
           </h1>
 
@@ -39,24 +43,25 @@ export default function Home() {
             High-Detail Engraving for Corporate, Industrial & Personal Projects
           </p>
 
-          <div className="flex justify-center gap-4">
+          {/* CTA BUTTONS */}
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-6 py-3 rounded-md bg-amber-500 hover:bg-amber-400 text-black font-semibold"
+              className="px-6 py-3 bg-amber-500 text-black font-semibold rounded-md hover:bg-amber-400 transition"
             >
               Get a Custom Quote
             </Link>
 
             <Link
               href="/contact"
-              className="px-6 py-3 rounded-md bg-gray-200 hover:bg-white text-black font-semibold"
+              className="px-6 py-3 border border-amber-500 text-amber-500 font-semibold rounded-md hover:bg-amber-500 hover:text-black transition"
             >
               Contact Us
             </Link>
 
             <Link
               href="/submit-project"
-              className="px-6 py-3 rounded-md bg-green-600 hover:bg-green-500 text-white font-semibold"
+              className="px-6 py-3 bg-green-600 font-semibold rounded-md hover:bg-green-500 transition"
             >
               Submit a Project
             </Link>
@@ -64,24 +69,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- GALLERY ---------------- */}
-      <section className="bg-zinc-950 py-20 px-6">
+      {/* -------------------- SERVICES SECTION -------------------- */}
+      <section className="bg-black py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">
-            Recent Work
+            Our Laser Engraving Services
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {galleryImages.map((src, i) => (
+          <div className="grid md:grid-cols-3 gap-10">
+            {[
+              {
+                title: "Fiber Laser Engraving",
+                text: "High-power engraving for metals, firearms, tools & industrial parts."
+              },
+              {
+                title: "UV Laser Marking",
+                text: "Perfect for plastics, polymers & sensitive materials requiring precision."
+              },
+              {
+                title: "CO₂ Engraving",
+                text: "Ideal for tumblers, leatherette patches, acrylic, signage & coated materials."
+              },
+            ].map((svc, i) => (
               <div
                 key={i}
-                className="relative aspect-square overflow-hidden rounded-lg"
+                className="bg-zinc-900 border border-zinc-800 p-8 rounded-xl hover:border-amber-500 transition"
               >
+                <h3 className="text-2xl font-semibold mb-4">{svc.title}</h3>
+                <p className="text-gray-300">{svc.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* -------------------- MINI GALLERY (AUTO IMAGES 1-16) -------------------- */}
+      <section className="bg-zinc-950 py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">Recent Work</h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {Array.from({ length: 16 }).map((_, i) => (
+              <div key={i} className="relative aspect-square overflow-hidden rounded-lg">
                 <Image
-                  src={src}
-                  alt="Engraving Example"
+                  src={`/gallery/img${i + 1}.jpg`}
+                  alt={`Gallery image ${i + 1}`}
                   fill
-                  className="object-cover hover:scale-110 transition"
+                  className="object-cover hover:scale-105 transition"
                 />
               </div>
             ))}
@@ -90,7 +124,7 @@ export default function Home() {
           <div className="text-center mt-10">
             <Link
               href="/engraving-gallery"
-              className="px-8 py-3 bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-md"
+              className="inline-block px-8 py-3 text-black font-semibold bg-amber-500 rounded-md hover:bg-amber-400 transition"
             >
               View Full Gallery
             </Link>
@@ -98,60 +132,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- WHY CHOOSE US ---------------- */}
-      <section className="bg-black py-20 px-6 border-t border-white/10">
+      {/* -------------------- WHY CHOOSE US -------------------- */}
+      <section className="bg-black py-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-10">Why Choose Us?</h2>
+          <h2 className="text-4xl font-bold mb-10">Why Choose Us</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div className="p-6 bg-zinc-900 rounded-xl border border-white/10">
-              <h3 className="text-2xl font-semibold mb-4">Laser Precision</h3>
-              <p className="text-gray-300">
-                CO₂, Fiber & UV engraving with unmatched accuracy.
-              </p>
-            </div>
-
-            <div className="p-6 bg-zinc-900 rounded-xl border border-white/10">
-              <h3 className="text-2xl font-semibold mb-4">Industrial Capacity</h3>
-              <p className="text-gray-300">
-                High-volume corporate engraving with fast turnaround.
-              </p>
-            </div>
-
-            <div className="p-6 bg-zinc-900 rounded-xl border border-white/10">
-              <h3 className="text-2xl font-semibold mb-4">Custom Artwork</h3>
-              <p className="text-gray-300">
-                We design laser-ready logos, artwork & mockups.
-              </p>
-            </div>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              "Industrial-Grade Fiber, UV & CO₂ Lasers",
+              "Fast Turnaround & Local Utah Service",
+              "Custom Artwork, Logos & Precision Marking",
+              "Reliable Quality Every Single Time",
+            ].map((reason, i) => (
+              <div
+                key={i}
+                className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl hover:border-amber-500 transition text-gray-300"
+              >
+                {reason}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ---------------- CTA ---------------- */}
-      <section className="py-24 px-6 bg-amber-600 text-black text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
-          <p className="text-lg mb-10">
-            Whether it's a single item or a mass-production run, we’ve got you covered.
-          </p>
+      {/* -------------------- CTA BANNER -------------------- */}
+      <section className="bg-amber-500 text-black py-16 text-center">
+        <h2 className="text-4xl font-bold mb-4">Start Your Project Today</h2>
 
-          <div className="flex justify-center gap-6">
-            <Link
-              href="/submit-project"
-              className="px-10 py-4 rounded-md bg-black text-white font-semibold hover:bg-zinc-800"
-            >
-              Submit a Project
-            </Link>
-
-            <Link
-              href="/contact"
-              className="px-10 py-4 rounded-md bg-white text-black font-semibold hover:bg-gray-200"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
+        <Link
+          href="/submit-project"
+          className="inline-block mt-4 px-8 py-3 font-semibold bg-black text-white rounded-md hover:bg-zinc-800 transition"
+        >
+          Submit a Project
+        </Link>
       </section>
 
     </main>
