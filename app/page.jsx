@@ -47,47 +47,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RECENT WORK */}
-      <section className="px-6 py-16 bg-gray-900">
-        <h2 className="text-4xl font-bold text-center mb-10">Recent Work</h2>
+{/* Recent Work Section */}
+<section id="recent-work" className="py-20 bg-black text-white">
+  <div className="max-w-6xl mx-auto px-6 text-center">
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    <h2 className="text-4xl font-bold mb-10 tracking-wide">
+      Recent Work
+    </h2>
 
-          <Image
-            src="/gallery/hat1.png"
-            alt="Custom Patch Hat"
-            width={500}
-            height={500}
-            className="rounded-lg shadow-lg"
-          />
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-          <Image
-            src="/gallery/tumbler1.png"
-            alt="Laser Engraved Tumbler"
-            width={500}
-            height={500}
-            className="rounded-lg shadow-lg"
-          />
+      {/* IMAGE 1 */}
+      <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
+        <img
+          src="/images/recent1.jpg"
+          alt="Recent project 1"
+          className="w-full h-64 object-cover"
+        />
+      </div>
 
-          <Image
-            src="/gallery/sign1.png"
-            alt="Laser Engraved Wood Sign"
-            width={500}
-            height={500}
-            className="rounded-lg shadow-lg"
-          />
+      {/* IMAGE 2 */}
+      <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
+        <img
+          src="/images/recent2.jpg"
+          alt="Recent project 2"
+          className="w-full h-64 object-cover"
+        />
+      </div>
 
-        </div>
+      {/* IMAGE 3 */}
+      <div className="rounded-lg overflow-hidden shadow-lg border border-gray-700">
+        <img
+          src="/images/recent3.jpg"
+          alt="Recent project 3"
+          className="w-full h-64 object-cover"
+        />
+      </div>
 
-        <div className="text-center mt-10">
-          <Link
-            href="/gallery"
-            className="px-8 py-3 bg-amber-500 text-black font-semibold rounded hover:bg-amber-400 transition"
-          >
-            View Full Gallery
-          </Link>
-        </div>
-      </section>
-    </main>
-  );
-}
+    </div>
+
+    {/* Gallery Button */}
+    <div className="mt-10">
+      <a
+        href="/gallery"
+        className="px-8 py-3 bg-green-600 hover:bg-green-700 transition text-white font-semibold rounded-lg"
+      >
+        View Full Gallery
+      </a>
+    </div>
+
+  </div>
+</section>
+      
