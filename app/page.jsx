@@ -1,62 +1,51 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
 export default function HomePage() {
   return (
     <main className="text-white">
-   {/* -------------------- HERO SECTION -------------------- */}
-<section className="relative h-[90vh] w-full flex items-center justify-center">
 
-  {/* Background Image */}
-  <div className="absolute inset-0">
-    <Image
-      src="/hero-forest.png"
-      alt="Foggy Forest"
-      fill
-      priority
-      className="object-cover opacity-70"
-    />
-    <div className="absolute inset-0 bg-black/60" />
-  </div>
+      {/* -------------------- HERO SECTION -------------------- */}
+      <section className="relative h-[90vh] w-full flex items-center justify-center">
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-forest.png"
+            alt="Foggy Forest"
+            fill
+            priority
+            className="object-cover opacity-70"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
 
-  {/* Content */}
-  <div className="relative z-10 text-center px-6 max-w-3xl">
+        <div className="relative z-10 text-center px-6 max-w-3xl">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+            Backwood Illuminated
+          </h1>
 
-    <h1 className="text-5xl md:text-6xl font-bold mb-4">
-      Backwood Illuminated
-    </h1>
+          <p className="text-lg md:text-2xl text-gray-200 mb-10">
+            High-Detail Laser Engraving for Corporate, Industrial & Personal Projects
+          </p>
 
-    <p className="text-lg md:text-2xl text-gray-200 mb-10">
-      High-Detail Laser Engraving for Corporate, Industrial & Personal Projects
-    </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="px-6 py-3 bg-amber-500 text-black font-semibold rounded-md hover:bg-amber-400 transition"
+            >
+              Submit a Project / Custom Quote
+            </Link>
 
-    {/* CTA BUTTONS */}
-    <div className="flex flex-wrap gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="px-6 py-3 border border-amber-500 text-amber-500 font-semibold rounded-md hover:bg-amber-500 hover:text-black transition"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      {/* MAIN BUTTON — unified quote/project submit */}
-      <Link
-        href="/contact"
-        className="px-6 py-3 bg-amber-500 text-black font-semibold rounded-md hover:bg-amber-400 transition"
-      >
-        Submit a Project / Custom Quote
-      </Link>
-
-      {/* CONTACT BUTTON */}
-      <Link
-        href="/contact"
-        className="px-6 py-3 border border-amber-500 text-amber-500 font-semibold rounded-md hover:bg-amber-500 hover:text-black transition"
-      >
-        Contact Us
-      </Link>
-
-    </div>
-  </div>
-</section>
-
-
-      {/* SERVICES */}
+      {/* -------------------- SERVICES SECTION -------------------- */}
       <section className="bg-black py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">
@@ -67,19 +56,16 @@ export default function HomePage() {
             {[
               {
                 title: "Fiber Laser Engraving",
-                text:
-                  "High-power fiber engraving for metals, tools, firearms, industrial parts & more.",
+                text: "High-power fiber engraving for metals, tools, firearms, industrial parts & more."
               },
               {
                 title: "UV Laser Marking",
-                text:
-                  "Precision marking for plastics, polymers, electronics & sensitive materials.",
+                text: "Precision marking for plastics, polymers, electronics & sensitive materials."
               },
               {
                 title: "CO₂ Laser Engraving",
-                text:
-                  "Perfect for tumblers, leatherette patches, acrylics, signage & coated materials.",
-              },
+                text: "Perfect for tumblers, leatherette patches, acrylics, signage & coated materials."
+              }
             ].map((svc, i) => (
               <div
                 key={i}
@@ -93,10 +79,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* RECENT WORK */}
+      {/* -------------------- MINI GALLERY PREVIEW -------------------- */}
       <section className="bg-zinc-950 py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">Recent Work</h2>
+          <h2 className="text-4xl font-bold text-center mb-12">
+            Recent Work
+          </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((i) => (
@@ -122,7 +110,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
+      {/* -------------------- WHY CHOOSE US -------------------- */}
       <section className="bg-black py-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-10">Why Choose Us</h2>
@@ -132,7 +120,7 @@ export default function HomePage() {
               "Industrial-Grade Fiber, UV & CO₂ Lasers",
               "Fast Turnaround & Local Utah Service",
               "Custom Artwork, Logos & Precision Marking",
-              "Reliable Quality Every Single Time",
+              "Reliable Quality Every Single Time"
             ].map((reason, i) => (
               <div
                 key={i}
@@ -145,16 +133,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* -------------------- CTA BANNER -------------------- */}
       <section className="bg-amber-500 text-black py-16 text-center">
         <h2 className="text-4xl font-bold mb-4">Start Your Project Today</h2>
         <Link
-          href="/submit-project"
+          href="/contact"
           className="inline-block mt-4 px-8 py-3 font-semibold bg-black text-white rounded-md hover:bg-zinc-800 transition"
         >
-          Submit a Project
+          Submit a Project / Custom Quote
         </Link>
       </section>
+
     </main>
   );
 }
