@@ -8,9 +8,9 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section
-        className="relative h-[90vh] bg-cover bg-center flex flex-col items-center justify-center text-center"
-        style={{ backgroundImage: "url('/foggybg.png')" }}
-      >
+  className="relative bg-cover bg-center bg-no-repeat h-[600px] flex items-center justify-center text-white"
+  style={{ backgroundImage: "url('/hero-forest.png')" }}
+>
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50" />
 
