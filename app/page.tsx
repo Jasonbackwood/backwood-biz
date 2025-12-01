@@ -15,18 +15,13 @@ export default function HomePage() {
           backgroundPosition: "center",
         }}
       >
-
-        {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/60"></div>
 
-        {/* CONTENT WRAPPER */}
         <div className="relative z-10 flex flex-col items-center px-4">
-
-          {/* BIGGER LOGO – change width=300 to adjust size */}
           <Image
             src="/logo.png"
             alt="Backwood Illuminated Logo"
-            width={300}   // <--- INCREASE SIZE HERE
+            width={300}
             height={300}
             className="mb-6 drop-shadow-xl"
             priority
@@ -40,7 +35,6 @@ export default function HomePage() {
             High-Detail Engraving for Corporate, Industrial & Personal Projects
           </p>
 
-          {/* CTA BUTTONS */}
           <div className="flex flex-col md:flex-row gap-4">
             <a
               href="/contact"
@@ -66,11 +60,68 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* RECENT WORK PLACEHOLDER (kept because you had it before) */}
+      {/* RECENT WORK */}
       <section className="py-20 px-6 text-center bg-black">
-        <h2 className="text-4xl font-bold mb-6">Recent Work</h2>
-        <p className="text-gray-400">Gallery will auto-populate here…</p>
+        <h2 className="text-4xl font-bold mb-10">Recent Work</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {/* Auto gallery images will be added later */}
+          <div className="border border-gray-700 rounded-lg p-10 text-gray-500">
+            Gallery Auto-Fill (Coming Soon)
+          </div>
+        </div>
       </section>
+
+      {/* WHY CHOOSE US */}
+      <section className="py-20 bg-zinc-900 px-6 text-center">
+        <h2 className="text-4xl font-bold mb-6">Why Choose Us?</h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto mt-10">
+
+          <div className="p-6 border border-gray-700 rounded-lg">
+            <h3 className="text-2xl font-semibold mb-3">Professional Quality</h3>
+            <p className="text-gray-300">
+              Industrial-grade lasers delivering unmatched engraving detail.
+            </p>
+          </div>
+
+          <div className="p-6 border border-gray-700 rounded-lg">
+            <h3 className="text-2xl font-semibold mb-3">Fast Turnaround</h3>
+            <p className="text-gray-300">
+              Same-week service available for most projects.
+            </p>
+          </div>
+
+          <div className="p-6 border border-gray-700 rounded-lg">
+            <h3 className="text-2xl font-semibold mb-3">Custom Projects</h3>
+            <p className="text-gray-300">
+              From corporate branding to personal gifts — we engrave it all.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* START YOUR PROJECT */}
+      <section className="py-20 px-6 text-center bg-black border-t border-gray-800">
+        <h2 className="text-4xl font-bold mb-6">Start Your Project Today</h2>
+        <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+          Whether you're looking for custom engraving, bulk corporate orders, or
+          industrial markings — we’re ready to help bring your ideas to life.
+        </p>
+
+        <a
+          href="/submit-project"
+          className="px-10 py-4 bg-green-600 hover:bg-green-700 rounded-md font-semibold text-lg"
+        >
+          Submit a Project
+        </a>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-10 text-center text-gray-500 bg-black border-t border-gray-800">
+        © {new Date().getFullYear()} Backwood Illuminated — All Rights Reserved
+      </footer>
 
     </main>
   );
