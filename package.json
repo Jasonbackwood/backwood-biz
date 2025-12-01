@@ -12,8 +12,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "nodemailer": "^6.9.8",
-    "tailwindcss": "^3.4.0",
-    "postcss": "^8.4.31",
-    "autoprefixer": "^10.4.14"
+    "konva": "^9.3.3",
+    "react-konva": "^18.2.7"
   }
 }
