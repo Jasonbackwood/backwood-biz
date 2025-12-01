@@ -2,26 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import fs from "fs";
-import path from "path";
 
-// ----------- AUTO GALLERY LOADER -----------
-function loadGalleryImages() {
-  try {
-    const galleryPath = path.join(process.cwd(), "public/gallery");
-    const files = fs.readdirSync(galleryPath);
-
-    return files.filter((file) =>
-      file.match(/\.(jpg|jpeg|png|webp|gif)$/i)
-    );
-  } catch (err) {
-    return [];
-  }
-}
+// AUTO GALLERY USING PUBLIC FOLDER (no fs)
+const galleryImages = Array.from({ length: 20 })
+  .map((_, i) => `/gallery/img${i + 1}.jpg`);
 
 export default function Home() {
-  const galleryImages = loadGalleryImages().slice(0, 8);
-
   return (
     <main className="flex flex-col bg-black text-white">
 
@@ -37,7 +23,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/70" />
 
         <div className="relative z-10 px-6">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <Image
+            src="/logo.png"
+            alt="Backwood Illuminated Logo"
+            width={160}
+            height={160}
+            className="mx-auto mb-6"
+          />
+
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
             Backwood Illuminated
           </h1>
 
@@ -70,39 +64,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- AUTO GALLERY ---------------- */}
+      {/* ---------------- GALLERY ---------------- */}
       <section className="bg-zinc-950 py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">
             Recent Work
           </h2>
 
-          {galleryImages.length === 0 ? (
-            <p className="text-center text-gray-400">
-              No images found in /public/gallery
-            </p>
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {galleryImages.map((file, i) => (
-                <div
-                  key={i}
-                  className="relative aspect-square rounded-lg overflow-hidden"
-                >
-                  <Image
-                    src={`/gallery/${file}`}
-                    alt={file}
-                    fill
-                    className="object-cover hover:scale-105 transition"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {galleryImages.map((src, i) => (
+              <div
+                key={i}
+                className="relative aspect-square overflow-hidden rounded-lg"
+              >
+                <Image
+                  src={src}
+                  alt="Engraving Example"
+                  fill
+                  className="object-cover hover:scale-110 transition"
+                />
+              </div>
+            ))}
+          </div>
 
           <div className="text-center mt-10">
             <Link
               href="/engraving-gallery"
-              className="inline-block px-8 py-3 text-black font-semibold bg-amber-500 rounded-md hover:bg-amber-400 transition"
+              className="px-8 py-3 bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-md"
             >
               View Full Gallery
             </Link>
@@ -115,37 +103,37 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-10">Why Choose Us?</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="p-6 bg-zinc-900 rounded-xl border border-white/10">
               <h3 className="text-2xl font-semibold mb-4">Laser Precision</h3>
               <p className="text-gray-300">
-                We deliver unmatched engraving accuracy using CO₂, Fiber, and UV laser technology.
+                CO₂, Fiber & UV engraving with unmatched accuracy.
               </p>
             </div>
 
             <div className="p-6 bg-zinc-900 rounded-xl border border-white/10">
-              <h3 className="text-2xl font-semibold mb-4">Industrial Capability</h3>
+              <h3 className="text-2xl font-semibold mb-4">Industrial Capacity</h3>
               <p className="text-gray-300">
-                We handle high-volume corporate orders with fast turnaround times.
+                High-volume corporate engraving with fast turnaround.
               </p>
             </div>
 
             <div className="p-6 bg-zinc-900 rounded-xl border border-white/10">
-              <h3 className="text-2xl font-semibold mb-4">Custom Design Support</h3>
+              <h3 className="text-2xl font-semibold mb-4">Custom Artwork</h3>
               <p className="text-gray-300">
-                Need artwork? We build laser-ready designs, logos, and production mockups.
+                We design laser-ready logos, artwork & mockups.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ---------------- START YOUR PROJECT CTA ---------------- */}
+      {/* ---------------- CTA ---------------- */}
       <section className="py-24 px-6 bg-amber-600 text-black text-center">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
           <p className="text-lg mb-10">
-            Whether it's a single personalized item or a full production run—we’ve got you.
+            Whether it's a single item or a mass-production run, we’ve got you covered.
           </p>
 
           <div className="flex justify-center gap-6">
