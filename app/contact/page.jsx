@@ -14,6 +14,15 @@ export default function ContactPage() {
       message: e.target.message.value,
     };
 
+    import SocialLinks from "../../components/SocialLinks";
+
+...
+
+<div className="mt-8">
+  <h3 className="text-xl font-semibold mb-2">Connect With Us</h3>
+  <SocialLinks />
+</div>
+
     await fetch("/api/send-contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
