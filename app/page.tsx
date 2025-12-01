@@ -1,170 +1,75 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="text-white">
+    <main className="w-full min-h-screen bg-black text-white">
 
-      {/* -------------------- HERO SECTION -------------------- */}
-      <section className="relative h-[90vh] w-full flex items-center justify-center overflow-hidden">
+      {/* HERO SECTION */}
+      <section
+        className="relative w-full h-screen flex flex-col justify-center items-center text-center"
+        style={{
+          backgroundImage: "url('/hero-forest.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
 
-        {/* Background Image */}
-        <div className="absolute inset-0">
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        {/* CONTENT WRAPPER */}
+        <div className="relative z-10 flex flex-col items-center px-4">
+
+          {/* BIGGER LOGO – change width=300 to adjust size */}
           <Image
-            src="/hero-forest.png"
-            alt="Foggy Forest"
-            fill
+            src="/logo.png"
+            alt="Backwood Illuminated Logo"
+            width={300}   // <--- INCREASE SIZE HERE
+            height={300}
+            className="mb-6 drop-shadow-xl"
             priority
-            className="object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
 
-        {/* Content */}
-        <div className="relative z-10 text-center px-6 max-w-3xl">
-          
-          {/* Logo */}
-          <div className="mb-6 flex justify-center">
-            <Image
-              src="/logo.jpg"
-              alt="Backwood Illuminated Logo"
-              width={140}
-              height={140}
-              priority
-              className="opacity-90"
-            />
-          </div>
-
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Backwood Illuminated
           </h1>
 
-          <p className="text-lg md:text-2xl text-gray-200 mb-10">
+          <p className="text-lg md:text-2xl mb-10 text-gray-200">
             High-Detail Engraving for Corporate, Industrial & Personal Projects
           </p>
 
           {/* CTA BUTTONS */}
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
+          <div className="flex flex-col md:flex-row gap-4">
+            <a
               href="/contact"
-              className="px-6 py-3 bg-amber-500 text-black font-semibold rounded-md hover:bg-amber-400 transition"
+              className="px-6 py-3 bg-amber-600 hover:bg-amber-700 rounded-md font-semibold"
             >
               Get a Custom Quote
-            </Link>
+            </a>
 
-            <Link
+            <a
               href="/contact"
-              className="px-6 py-3 border border-amber-500 text-amber-500 font-semibold rounded-md hover:bg-amber-500 hover:text-black transition"
+              className="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-md font-semibold"
             >
               Contact Us
-            </Link>
+            </a>
 
-            <Link
+            <a
               href="/submit-project"
-              className="px-6 py-3 bg-green-600 font-semibold rounded-md hover:bg-green-500 transition"
+              className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-md font-semibold"
             >
               Submit a Project
-            </Link>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* -------------------- SERVICES SECTION -------------------- */}
-      <section className="bg-black py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            Our Laser Engraving Services
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                title: "Fiber Laser Engraving",
-                text: "High-power engraving for metals, firearms, tools & industrial parts."
-              },
-              {
-                title: "UV Laser Marking",
-                text: "Perfect for plastics, polymers & sensitive materials requiring precision."
-              },
-              {
-                title: "CO₂ Engraving",
-                text: "Ideal for tumblers, leatherette patches, acrylic, signage & coated materials."
-              },
-            ].map((svc, i) => (
-              <div
-                key={i}
-                className="bg-zinc-900 border border-zinc-800 p-8 rounded-xl hover:border-amber-500 transition"
-              >
-                <h3 className="text-2xl font-semibold mb-4">{svc.title}</h3>
-                <p className="text-gray-300">{svc.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* -------------------- MINI GALLERY (AUTO IMAGES 1-16) -------------------- */}
-      <section className="bg-zinc-950 py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">Recent Work</h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Array.from({ length: 16 }).map((_, i) => (
-              <div key={i} className="relative aspect-square overflow-hidden rounded-lg">
-                <Image
-                  src={`/gallery/img${i + 1}.jpg`}
-                  alt={`Gallery image ${i + 1}`}
-                  fill
-                  className="object-cover hover:scale-105 transition"
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <Link
-              href="/engraving-gallery"
-              className="inline-block px-8 py-3 text-black font-semibold bg-amber-500 rounded-md hover:bg-amber-400 transition"
-            >
-              View Full Gallery
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* -------------------- WHY CHOOSE US -------------------- */}
-      <section className="bg-black py-20 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-10">Why Choose Us</h2>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              "Industrial-Grade Fiber, UV & CO₂ Lasers",
-              "Fast Turnaround & Local Utah Service",
-              "Custom Artwork, Logos & Precision Marking",
-              "Reliable Quality Every Single Time",
-            ].map((reason, i) => (
-              <div
-                key={i}
-                className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl hover:border-amber-500 transition text-gray-300"
-              >
-                {reason}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* -------------------- CTA BANNER -------------------- */}
-      <section className="bg-amber-500 text-black py-16 text-center">
-        <h2 className="text-4xl font-bold mb-4">Start Your Project Today</h2>
-
-        <Link
-          href="/submit-project"
-          className="inline-block mt-4 px-8 py-3 font-semibold bg-black text-white rounded-md hover:bg-zinc-800 transition"
-        >
-          Submit a Project
-        </Link>
+      {/* RECENT WORK PLACEHOLDER (kept because you had it before) */}
+      <section className="py-20 px-6 text-center bg-black">
+        <h2 className="text-4xl font-bold mb-6">Recent Work</h2>
+        <p className="text-gray-400">Gallery will auto-populate here…</p>
       </section>
 
     </main>
