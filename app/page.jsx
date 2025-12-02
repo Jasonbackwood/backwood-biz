@@ -54,6 +54,49 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
+            {/* Social Icons Section */}
+<section className="text-center mt-16 mb-10">
+  <h2 className="text-2xl font-bold mb-4">Connect With Us</h2>
+
+  <div className="flex justify-center gap-6">
+    <a
+      href="https://www.facebook.com/profile.php?id=100090937422770"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/social/facebook.png"
+        alt="Facebook"
+        className="w-10 h-10 hover:opacity-70 transition"
+      />
+    </a>
+
+    <a
+      href="https://www.instagram.com/backwood_illuminated_/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/social/instagram.png"
+        alt="Instagram"
+        className="w-10 h-10 hover:opacity-70 transition"
+      />
+    </a>
+
+    <a
+      href="https://www.tiktok.com/@backwood.illumina2"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/social/tiktok.png"
+        alt="TikTok"
+        className="w-10 h-10 hover:opacity-70 transition"
+      />
+    </a>
+  </div>
+</section>
+
             {/* IMAGE 1 */}
             <div className="rounded-lg overflow-hidden border border-gray-700 shadow-lg">
               <img
