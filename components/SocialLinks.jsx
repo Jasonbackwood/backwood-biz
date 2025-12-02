@@ -1,39 +1,41 @@
-export default function SocialLinks({ className = "" }) {
+import Image from "next/image";
+
+export default function SocialLinks() {
   return (
-    <div className={`flex gap-6 ${className}`}>
+    <div className="flex items-center justify-center space-x-6 mt-6">
       <a
         href="https://www.facebook.com/profile.php?id=100090937422770"
         target="_blank"
-        rel="noopener noreferrer"
       >
-        <img
-          src="/icons/facebook.svg"
+        <Image
+          src="/social/facebook.png"
           alt="Facebook"
-          className="w-8 h-8 hover:opacity-80"
+          width={40}
+          height={40}
         />
       </a>
 
       <a
         href="https://www.instagram.com/backwood_illuminated_/"
         target="_blank"
-        rel="noopener noreferrer"
       >
-        <img
-          src="/icons/instagram.svg"
+        <Image
+          src="/social/instagram.png"
           alt="Instagram"
-          className="w-8 h-8 hover:opacity-80"
+          width={40}
+          height={40}
         />
       </a>
 
       <a
         href="https://www.tiktok.com/@backwood.illumina2"
         target="_blank"
-        rel="noopener noreferrer"
       >
-        <img
-          src="/icons/tiktok.svg"
+        <Image
+          src="/social/tiktok.png"
           alt="TikTok"
-          className="w-8 h-8 hover:opacity-80"
+          width={40}
+          height={40}
         />
       </a>
     </div>
