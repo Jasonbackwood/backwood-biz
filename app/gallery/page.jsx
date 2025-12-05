@@ -1,20 +1,35 @@
-export const dynamic = "force-dynamic";
+"use client";
 
-export default function GalleryPage() {
+import Image from "next/image";
+
+export default function Gallery() {
   const images = [
-    "/gallery/8569108F-9B84-4699-B7E0-8DEDD6225975.JPEG",
-    "/gallery/BEAA76F1-E865-460D-8C25-7E2326CCB27D.JPEG",
-    "/gallery/C8A9A17D-212E-46CF-BAD2-52F13F5EC417.JPEG",
+    "IMG_0015_opt.webp",
+    "IMG_0016_opt.webp",
+    "IMG_0017_opt.webp",
+    "IMG_0019_opt.webp",
+    "IMG_0021_opt.webp",
+    "IMG_0022_opt.webp",
+    "IMG_0023_opt.webp",
   ];
 
   return (
-    <main className="bg-black min-h-screen text-white py-20 px-6">
-      <h1 className="text-4xl font-bold text-center mb-12">Full Gallery</h1>
+    <main className="bg-black text-white min-h-screen py-20 px-6">
+      <h1 className="text-4xl font-bold text-center mb-12">Gallery</h1>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {images.map((src, index) => (
-          <div key={index} className="rounded-lg overflow-hidden border border-gray-700 shadow-lg">
-            <img src={src} alt={`Gallery image ${index + 1}`} className="w-full h-72 object-cover" />
+        {images.map((img) => (
+          <div
+            key={img}
+            className="rounded-lg overflow-hidden border border-gray-700 shadow-lg"
+          >
+            <Image
+              src={`/gallery/${img}`}
+              alt={img}
+              width={500}
+              height={500}
+              className="object-cover w-full h-80"
+            />
           </div>
         ))}
       </div>
