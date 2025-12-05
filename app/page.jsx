@@ -51,9 +51,15 @@ export default function Home() {
       
       {/* HERO SECTION */}
       <section
-  className="relative bg-cover bg-center bg-no-repeat h-[600px] flex items-center justify-center text-white"
-  style={{ backgroundImage: "url('/optimized_hero-forest.webp')" }}
->
+ <Image
+  src="/optimized_hero-forest.webp"
+  alt="Backwood Illuminated Hero Background"
+  fill
+  priority
+  className="object-cover"
+  sizes="100vw"
+/>
+
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50" />
 
