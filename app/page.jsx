@@ -27,7 +27,7 @@ export default function Home() {
       </section>
 
       {/* HERO SECTION */}
-      <section className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
+      <section className="relative w-full h-[95vh] sm:h-[90vh] md:h-[80vh] overflow-hidden">
 
         {/* Correct Background Image */}
         <Image
