@@ -52,14 +52,14 @@ export default function Home() {
       {/* HERO SECTION */}
       <section
   className="relative bg-cover bg-center bg-no-repeat h-[600px] flex items-center justify-center text-white"
-  style={{ backgroundImage: "url('/hero-forest.png')" }}
+  style={{ backgroundImage: "url('/optimized_hero-forest.webp')" }}
 >
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50" />
 
         <div className="relative z-10">
           <img
-            src="/logo.png"
+            src="/optimized_logo.webp"
             alt="Backwood Illuminated Logo"
             className="mx-auto mb-6 w-64 drop-shadow-2xl"
           />
