@@ -126,6 +126,59 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+{/* FOOTER */}
+<footer className="bg-black text-gray-400 border-t border-gray-700 mt-20 py-10 text-center px-6">
+  
+  <div className="max-w-4xl mx-auto">
+    <p className="text-sm mb-3">
+      © 2025 Backwood Illuminated. All rights reserved.
+    </p>
+
+    <p className="text-xs leading-relaxed max-w-3xl mx-auto">
+      All product names, logos, and brands are property of their respective owners.  
+      All company, product, and service names used in this website are for identification  
+      purposes only. Use of these names, logos, and brands does not imply endorsement.
+    </p>
+
+    {/* Optional Social Icons Again */}
+    <div className="flex justify-center gap-6 mt-6">
+      <a
+        href="https://www.facebook.com/profile.php?id=100090937422770"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="/social/facebook_opt.webp"
+          className="w-8 h-8 opacity-80 hover:opacity-100 transition"
+          alt="Facebook"
+        />
+      </a>
+      <a
+        href="https://www.instagram.com/backwood_illuminated_/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="/social/instagram_opt.webp"
+          className="w-8 h-8 opacity-80 hover:opacity-100 transition"
+          alt="Instagram"
+        />
+      </a>
+      <a
+        href="https://www.tiktok.com/@backwood.illumina2"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="/social/tiktok_opt.webp"
+          className="w-8 h-8 opacity-80 hover:opacity-100 transition"
+          alt="TikTok"
+        />
+      </a>
+    </div>
+  </div>
+</footer>
 
     </main>
   );
