@@ -1,73 +1,85 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <main className="bg-black text-white">
 
-      {/* Social Icons Section */}
-<section className="text-center mt-16 mb-10">
-  <h2 className="text-2xl font-bold mb-4">Connect With Us</h2>
+      {/* SOCIAL ICONS */}
+      <section className="text-center mt-16 mb-10">
+        <h2 className="text-2xl font-bold mb-4">Connect With Us</h2>
 
-  <div className="flex justify-center gap-6">
-    <a
-      href="https://www.facebook.com/profile.php?id=100090937422770"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img
-        src="/social/facebook.png"
-        alt="Facebook"
-        className="w-10 h-10 hover:opacity-70 transition"
-      />
-    </a>
+        <div className="flex justify-center gap-6">
+          <a
+            href="https://www.facebook.com/profile.php?id=100090937422770"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/social/facebook_opt.webp"
+              alt="Facebook"
+              width={40}
+              height={40}
+              className="hover:opacity-70 transition"
+            />
+          </a>
 
-    <a
-      href="https://www.instagram.com/backwood_illuminated_/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img
-        src="/social/instagram.png"
-        alt="Instagram"
-        className="w-10 h-10 hover:opacity-70 transition"
-      />
-    </a>
+          <a
+            href="https://www.instagram.com/backwood_illuminated_/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/social/instagram_opt.webp"
+              alt="Instagram"
+              width={40}
+              height={40}
+              className="hover:opacity-70 transition"
+            />
+          </a>
 
-    <a
-      href="https://www.tiktok.com/@backwood.illumina2"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img
-        src="/social/tiktok.png"
-        alt="TikTok"
-        className="w-10 h-10 hover:opacity-70 transition"
-      />
-    </a>
-  </div>
-</section>
-      
+          <a
+            href="https://www.tiktok.com/@backwood.illumina2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/social/tiktok_opt.webp"
+              alt="TikTok"
+              width={40}
+              height={40}
+              className="hover:opacity-70 transition"
+            />
+          </a>
+        </div>
+      </section>
+
       {/* HERO SECTION */}
-      <section
- <Image
-  src="/optimized_hero-forest.webp"
-  alt="Backwood Illuminated Hero Background"
-  fill
-  priority
-  className="object-cover"
-  sizes="100vw"
-/>
+      <section className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
+
+        {/* Background Hero Image */}
+        <Image
+          src="/optimized_hero-forest.webp"
+          alt="Backwood Illuminated Hero Background"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10">
-          <img
+        {/* Center Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+          <Image
             src="/optimized_logo.webp"
             alt="Backwood Illuminated Logo"
-            className="mx-auto mb-6 w-64 drop-shadow-2xl"
+            width={260}
+            height={260}
+            className="drop-shadow-2xl mb-6"
           />
 
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -103,30 +115,34 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            {/* IMAGE 1 */}
+            {/* GALLERY IMAGES — UPDATE TO optimized images */}
             <div className="rounded-lg overflow-hidden border border-gray-700 shadow-lg">
-              <img
-                src="/gallery/8569108F-9B84-4699-B7E0-8DEDD6225975.JPEG"
-                className="w-full h-72 object-cover"
+              <Image
+                src="/gallery/IMG_0015_opt.webp"
                 alt="Gallery Image 1"
+                width={500}
+                height={300}
+                className="object-cover w-full h-72"
               />
             </div>
 
-            {/* IMAGE 2 */}
             <div className="rounded-lg overflow-hidden border border-gray-700 shadow-lg">
-              <img
-                src="/gallery/BEAA76F1-E865-460D-8C25-7E2326CCB27D.JPEG"
-                className="w-full h-72 object-cover"
+              <Image
+                src="/gallery/IMG_0016_opt.webp"
                 alt="Gallery Image 2"
+                width={500}
+                height={300}
+                className="object-cover w-full h-72"
               />
             </div>
 
-            {/* IMAGE 3 */}
             <div className="rounded-lg overflow-hidden border border-gray-700 shadow-lg">
-              <img
-                src="/gallery/C8A9A17D-212E-46CF-BAD2-52F13F5EC417.JPEG"
-                className="w-full h-72 object-cover"
+              <Image
+                src="/gallery/IMG_0017_opt.webp"
                 alt="Gallery Image 3"
+                width={500}
+                height={300}
+                className="object-cover w-full h-72"
               />
             </div>
 
