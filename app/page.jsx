@@ -56,58 +56,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HERO SECTION */}
-      <section className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
+     {/* HERO SECTION */}
+<section className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden">
 
-        {/* Background Hero Image */}
-        <Image
-          src="/optimized_hero-forest.webp"
-          alt="Backwood Illuminated Hero Background"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+  {/* Background Image */}
+  <Image
+    src="/optimized_hero-forest.webp"
+    alt="Backwood Illuminated Hero Background"
+    fill
+    priority
+    className="object-cover"
+    sizes="100vw"
+  />
 
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/50" />
 
-        {/* Center Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-          <Image
-            src="/optimized_logo.webp"
-            alt="Backwood Illuminated Logo"
-            width={260}
-            height={260}
-            className="drop-shadow-2xl mb-6"
-          />
+  {/* Center Content */}
+  <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+    <Image
+      src="/optimized_logo.webp"
+      alt="Backwood Illuminated Logo"
+      width={260}
+      height={260}
+      className="drop-shadow-2xl mb-6"
+    />
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Backwood Illuminated
-          </h1>
+    <h1 className="text-4xl md:text-6xl font-bold mb-4">
+      Backwood Illuminated
+    </h1>
 
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            High-Detail Laser Engraving for Corporate, Industrial & Personal Projects
-          </p>
+    <p className="text-lg md:text-xl max-w-2xl mx-auto">
+      High-Detail Laser Engraving for Corporate, Industrial & Personal Projects
+    </p>
 
-          <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
-            <Link
-              href="/submit-project"
-              className="px-8 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
-            >
-              Submit a Project / Custom Quote
-            </Link>
+    <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
+      <Link
+        href="/submit-project"
+        className="px-8 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
+      >
+        Submit a Project / Custom Quote
+      </Link>
 
-            <Link
-              href="/contact"
-              className="px-8 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Link
+        href="/contact"
+        className="px-8 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition"
+      >
+        Contact Us
+      </Link>
+    </div>
+  </div>
 
+</section>
+       
       {/* RECENT WORK */}
       <section id="recent-work" className="py-20 bg-black text-white">
         <div className="max-w-6xl mx-auto px-6 text-center">
