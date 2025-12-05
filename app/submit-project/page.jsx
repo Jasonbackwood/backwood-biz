@@ -173,22 +173,6 @@ export default function SubmitProjectPage() {
         </form>
       )}
 
-      {/* BUSINESS ADDRESS */}
-      <div className="text-center mt-16">
-        <h2 className="text-2xl font-bold">Business Address</h2>
-        <p className="mt-2">Backwood Illuminated LLC</p>
-        <p>Woods Cross, Utah 84087</p>
-      </div>
-
-      {/* ABOUT US */}
-      <div className="text-center mt-10 text-gray-300 leading-relaxed">
-        <h2 className="text-2xl font-bold mb-3 text-white">A Bit About Us</h2>
-        <p>
-          Backwood Illuminated brings Utah craftsmanship, precision laser technology, and
-          rugged work ethic to every engraving job — commercial, industrial, or personal.
-          Built for durability. Built for detail. Built to impress.
-        </p>
-
         <a
           href="/"
           className="inline-block mt-6 bg-yellow-600 hover:bg-yellow-700 px-6 py-3 rounded"
