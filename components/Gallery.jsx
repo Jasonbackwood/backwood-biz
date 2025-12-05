@@ -1,13 +1,13 @@
 import Image from "next/image";
 
 const gallery = [
-  "/optimized_IMG_0015.webp",
-  "/optimized_IMG_0016.webp",
-  "/optimized_IMG_0017.webp",
-  "/optimized_IMG_0019.webp",
-  "/optimized_IMG_0021.webp",
-  "/optimized_IMG_0022.webp",
-  "/optimized_IMG_0023.webp"
+  "/IMG_0015_opt.webp",
+  "/IMG_0016_opt.webp",
+  "/IMG_0017_opt.webp",
+  "/IMG_0019_opt.webp",
+  "/IMG_0021_opt.webp",
+  "/IMG_0022_opt.webp",
+  "/IMG_0023_opt.webp"
 ];
 
 export default function Gallery() {
@@ -18,7 +18,7 @@ export default function Gallery() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {gallery.map((src, i) => (
           <div key={i} className="w-full aspect-square relative">
-            <Image 
+            <Image
               src={src}
               alt={`Gallery image ${i + 1}`}
               fill
