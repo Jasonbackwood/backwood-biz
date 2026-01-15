@@ -27,69 +27,69 @@ export default function Home() {
       </section>
 
       {/* HERO SECTION */}
-      <section className="relative w-full h-[95vh] sm:h-[90vh] md:h-[80vh] overflow-hidden">
+<section className="relative w-full h-[95vh] sm:h-[90vh] md:h-[80vh] overflow-hidden">
 
-        {/* Correct Background Image */}
-        <Image
-          src="/optimizied_hero-forest.webp"   // <-- FIXED SPELLING
-          alt="Backwood Illuminated Hero Background"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+  {/* Background Image */}
+  <Image
+    src="/optimizied_hero-forest.webp"
+    alt="Backwood Illuminated Hero Background"
+    fill
+    priority
+    className="object-cover"
+    sizes="100vw"
+  />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/50" />
 
-        {/* Center Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-          <Image
-            src="/optimized_logo.webp"
-            alt="Backwood Illuminated Logo"
-            width={260}
-            height={260}
-            className="drop-shadow-2xl mb-6"
-          />
+  {/* Center Content */}
+  <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Backwood Illuminated
-          </h1>
+    <Image
+      src="/optimized_logo.webp"
+      alt="Backwood Illuminated Logo"
+      width={260}
+      height={260}
+      className="drop-shadow-2xl mb-6"
+    />
 
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            High-Detail Laser Engraving for Corporate, Industrial & Personal Projects
-          </p>
+    <h1 className="text-4xl md:text-6xl font-bold mb-4">
+      Backwood Illuminated
+    </h1>
 
-         <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
+    <p className="text-lg md:text-xl max-w-2xl mx-auto">
+      High-Detail Laser Engraving for Corporate, Industrial & Personal Projects
+    </p>
 
-  {/* Submit Project */}
-  <Link
-    href="/submit-project"
-    className="px-8 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
-  >
-    Submit a Project / Custom Quote
-  </Link>
+    {/* BUTTON ROW */}
+    <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
 
-  {/* Contact */}
-  <Link
-    href="/contact"
-    className="px-8 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition"
-  >
-    Contact Us
-  </Link>
+      <Link
+        href="/submit-project"
+        className="px-8 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
+      >
+        Submit a Project / Custom Quote
+      </Link>
 
-  {/* NEW PROMO BUTTON */}
-  <a
-    href="https://backwood-biz.espwebsites.com/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-500 transition shadow-lg"
-  >
-    See Your Logo on Gear
-  </a>
+      <Link
+        href="/contact"
+        className="px-8 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition"
+      >
+        Contact Us
+      </Link>
 
-</div>
-       </section>
+      <a
+        href="https://backwood-biz.espwebsites.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-500 transition shadow-lg"
+      >
+        See Your Logo on Gear
+      </a>
+
+    </div>
+  </div>
+</section>
 
       {/* RECENT WORK */}
       <section id="recent-work" className="py-20 bg-black text-white">
