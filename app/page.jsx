@@ -60,23 +60,36 @@ export default function Home() {
             High-Detail Laser Engraving for Corporate, Industrial & Personal Projects
           </p>
 
-          <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
-            <Link
-              href="/submit-project"
-              className="px-8 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
-            >
-              Submit a Project / Custom Quote
-            </Link>
+         <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
 
-            <Link
-              href="/contact"
-              className="px-8 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
+  {/* Submit Project */}
+  <Link
+    href="/submit-project"
+    className="px-8 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
+  >
+    Submit a Project / Custom Quote
+  </Link>
+
+  {/* Contact */}
+  <Link
+    href="/contact"
+    className="px-8 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition"
+  >
+    Contact Us
+  </Link>
+
+  {/* NEW PROMO BUTTON */}
+  <a
+    href="https://backwood-biz.espwebsites.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-500 transition shadow-lg"
+  >
+    See Your Logo on Gear
+  </a>
+
+</div>
+       </section>
 
       {/* RECENT WORK */}
       <section id="recent-work" className="py-20 bg-black text-white">
