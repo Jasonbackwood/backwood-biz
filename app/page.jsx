@@ -65,13 +65,6 @@ export default function Home() {
     <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
 
       <Link
-        href="/submit-project"
-        className="px-8 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
-      >
-        Submit a Project / Custom Quote
-      </Link>
-
-      <Link
         href="/contact"
         className="px-8 py-3 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition"
       >
