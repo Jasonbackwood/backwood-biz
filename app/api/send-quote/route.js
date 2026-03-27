@@ -3,15 +3,17 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const { name, email, phone, message } = await req.json();
+    // Parse form data from request
+    const formData = await req.formData();
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Name, email, and message are required." },
-        { status: 400 }
-      );
-    }
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const details = formData.get("details");
 
+    const uploadedFiles = formData.getAll("files"); // multiple file support
+
+    // Email setup
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -20,35 +22,38 @@ export async function POST(req) {
       },
     });
 
-    await transporter.sendMail({
+    const mailOptions = {
       from: `"Backwood Website" <${process.env.GMAIL_USER}>`,
-      to: "jason@backwood.biz",
-      replyTo: email,
-      subject: `New Contact Form Submission from ${name}`,
+      to: process.env.SEND_TO,
+      subject: `New Project Submission from ${name}`,
       text: `
 Name: ${name}
 Email: ${email}
-Phone: ${phone || "N/A"}
+Phone: ${phone}
 
-Message:
-${message}
+Project Details:
+${details}
       `,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || "N/A"}</p>
-        <p><strong>Message:</strong></p>
-        <p>${String(message).replace(/\n/g, "<br />")}</p>
-      `,
-    });
+      attachments: [],
+    };
+
+    // Attach all files
+    for (const file of uploadedFiles) {
+      if (!file || !file.name) continue;
+
+      const buffer = Buffer.from(await file.arrayBuffer());
+
+      mailOptions.attachments.push({
+        filename: file.name,
+        content: buffer,
+      });
+    }
+
+    await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (err) {
-    console.error("CONTACT FORM ERROR:", err);
-    return NextResponse.json(
-      { error: "Failed to send message." },
-      { status: 500 }
-    );
+    console.error("SEND QUOTE ERROR →", err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
