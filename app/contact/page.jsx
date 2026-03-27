@@ -9,20 +9,18 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      phone: e.target.phone.value,
-      message: e.target.message.value,
-    };
+    const formData = new FormData();
+    formData.append("name", e.target.name.value);
+    formData.append("email", e.target.email.value);
+    formData.append("phone", e.target.phone.value);
+    formData.append("details", e.target.message.value);
 
     setStatus("Sending...");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/send-quote", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: formData,
       });
 
       if (response.ok) {
@@ -85,27 +83,24 @@ export default function ContactPage() {
         {status && <p className="text-center text-gray-300">{status}</p>}
       </form>
 
-      {/* Social Links */}
       <div className="mt-12 text-center">
         <h3 className="text-xl font-semibold mb-3">Connect With Us</h3>
         <SocialLinks className="justify-center" />
       </div>
 
-      {/* Business Address */}
       <div className="mt-16 text-center">
         <h2 className="text-2xl font-bold mb-2">Business Address</h2>
         <p>Backwood Illuminated LLC</p>
         <p>Woods Cross, Utah 84087</p>
       </div>
 
-      {/* About Us */}
       <div className="mt-12 text-center max-w-2xl mx-auto">
         <h2 className="text-2xl font-bold mb-2">A Bit About Us</h2>
         <p className="text-gray-300">
           Based in Woods Cross, Utah — Backwood Illuminated brings craftsmanship,
           precision, and rugged creativity to every engraving project. Whether it’s
-          corporate branding or custom one-off pieces, we combine modern laser tech 
-          with real Utah work ethic. If you want something built with pride, built 
+          corporate branding or custom one-off pieces, we combine modern laser tech
+          with real Utah work ethic. If you want something built with pride, built
           to last, and built to turn heads — you’re in the right place.
         </p>
       </div>
